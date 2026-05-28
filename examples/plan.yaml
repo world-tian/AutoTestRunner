@@ -1,0 +1,7 @@
+name: "V1.0 智能插座回归测试计划"
+description: "包含核心硬件状态测试"
+targets:
+  - "examples/test_hardware.py"
+env:
+  DEVICE_IP: "192.168.1.100"
+  RELAY_PORT: "1"

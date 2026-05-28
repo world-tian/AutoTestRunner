@@ -2,6 +2,7 @@ import argparse
 import sys
 import logging
 from .core.runner import run_tests_locally
+from .core.plan_parser import parse_test_plan
 
 def main():
     parser = argparse.ArgumentParser(description="AutoTestRunner - 智能硬件自动化测试本地引擎")
@@ -9,8 +10,8 @@ def main():
 
     # run command
     run_parser = subparsers.add_parser("run", help="在本地执行测试用例")
-    run_parser.add_parser("run", help="在本地执行测试用例")
     run_parser.add_argument("path", default="tests/", nargs="?", help="测试用例路径 (默认 tests/)")
+    run_parser.add_argument("--plan", help="指定 YAML 测试计划文件")
     run_parser.add_argument("--hub-url", help="[协同模式] AutoTestHub 云端地址")
     run_parser.add_argument("--token", help="[协同模式] 云端鉴权 Token")
 
@@ -23,13 +24,20 @@ def main():
     args = parser.parse_args()
 
     if args.command == "run":
+        target_path = args.path
+        # 如果指定了 plan，则解析 plan
+        if args.plan:
+            targets = parse_test_plan(args.plan)
+            if not targets:
+                sys.exit(1)
+            target_path = targets # pytest accepts list of targets
+            
         report_to_cloud = bool(args.hub_url and args.token)
-        exit_code = run_tests_locally(args.path, report_to_cloud, args.hub_url, args.token)
+        exit_code = run_tests_locally(target_path, report_to_cloud, args.hub_url, args.token)
         sys.exit(exit_code)
         
     elif args.command == "sync":
         logging.info(f"🔄 正在解析 {args.path} 中的 @autotest 元数据...")
-        logging.info(f"☁️ 正在将用例目录推送到云端: {args.hub_url}")
         logging.info("✅ 同步完成！现在可以在云端大盘中查看这些只读自动化用例了。")
         
     else:
