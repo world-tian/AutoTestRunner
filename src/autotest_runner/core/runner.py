@@ -31,27 +31,22 @@ def run_tests_locally(target_paths, report_to_cloud=False, hub_url=None, token=N
     abs_cwd = os.path.abspath(os.getcwd())
     reports_dir = os.path.join(abs_cwd, "reports")
     
-    # 确保 reports 目录存在并有权限
+    # 彻底解决 MacOS Sandbox/SIP 导致的 Operation not permitted 权限问题
+    # 如果是在 Agent 进程（可能是系统服务）中拉起，写入受保护目录会被拒绝，直接换到 /tmp
+    test_file = os.path.join(reports_dir, ".test_write")
     try:
         os.makedirs(reports_dir, exist_ok=True)
+        with open(test_file, 'w') as f:
+            f.write("test")
+        os.remove(test_file)
     except Exception as e:
-        logging.warning(f"⚠️ 无法创建报告目录 {reports_dir}: {e}, 回退到 /tmp")
+        logging.warning(f"⚠️ 当前目录无写入权限 ({e})，报告将重定向至 /tmp/autotest_reports")
         reports_dir = "/tmp/autotest_reports"
         os.makedirs(reports_dir, exist_ok=True)
         
     report_name = os.path.join(reports_dir, f"report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.html")
     
     pytest_args = target_paths + ["-v", f"--html={report_name}", "--self-contained-html"]
-    
-    # pytest 内部的插件在某些系统环境下打开文件时可能遇到 PermissionError
-    # 这里通过捕获外层异常或确保文件可写来防御
-    try:
-        # 预先创建一个空文件并赋予权限
-        with open(report_name, 'w') as f:
-            pass
-        os.chmod(report_name, 0o666)
-    except Exception as e:
-        logging.warning(f"⚠️ 预先创建报告文件失败: {e}")
     
     try:
         exit_code = pytest.main(pytest_args, plugins=[SafeExecutionPlugin()])
