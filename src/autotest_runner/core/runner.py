@@ -46,7 +46,7 @@ def run_tests_locally(target_paths, report_to_cloud=False, hub_url=None, token=N
         
     report_name = os.path.join(reports_dir, f"report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.html")
     
-    pytest_args = target_paths + ["-v", f"--html={report_name}", "--self-contained-html"]
+    pytest_args = target_paths + ["-v", f"--html={report_name}", "--self-contained-html", "-p", "no:cacheprovider"]
     
     try:
         exit_code = pytest.main(pytest_args, plugins=[SafeExecutionPlugin()])
