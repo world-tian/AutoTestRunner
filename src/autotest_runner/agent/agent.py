@@ -207,9 +207,20 @@ class AutoTestAgent:
             if device_id:
                 env["AUTOTEST_DEVICE_ID"] = device_id
             
-            # 如果 working_dir 不存在，则使用当前目录
-            cwd = working_dir if working_dir and os.path.exists(working_dir) else os.getcwd()
+            # 使用全局配置的工作目录优先，如果未配置，再使用 working_dir 或当前目录
+            global_workspace = os.getenv("AUTOTEST_WORKSPACE")
+            if global_workspace and os.path.exists(global_workspace):
+                cwd = global_workspace
+            else:
+                cwd = working_dir if working_dir and os.path.exists(working_dir) else os.getcwd()
             
+            # 自动将 pytest 替换为 python -m pytest，以满足用户在特定目录直接启动的习惯
+            if test_command and test_command.startswith("pytest"):
+                test_command = test_command.replace("pytest", "python -m pytest", 1)
+            elif test_command and test_command.startswith("autotest-runner run"):
+                # 如果是 autotest-runner run，也可以转换为 python -m pytest (这里只是尽量兼容)
+                pass
+                
             logger.info(f"Running command: {test_command} in {cwd}")
             
             output = []

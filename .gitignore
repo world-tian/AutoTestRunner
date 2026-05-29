@@ -8,3 +8,18 @@ __pycache__/
 dist/
 build/
 .DS_Store
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# pytest cache
+.pytest_cache/
+reports/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
