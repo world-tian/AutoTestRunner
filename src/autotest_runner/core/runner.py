@@ -32,12 +32,31 @@ def run_tests_locally(target_paths, report_to_cloud=False, hub_url=None, token=N
     reports_dir = os.path.join(abs_cwd, "reports")
     
     # 确保 reports 目录存在并有权限
-    os.makedirs(reports_dir, exist_ok=True)
+    try:
+        os.makedirs(reports_dir, exist_ok=True)
+    except Exception as e:
+        logging.warning(f"⚠️ 无法创建报告目录 {reports_dir}: {e}, 回退到 /tmp")
+        reports_dir = "/tmp/autotest_reports"
+        os.makedirs(reports_dir, exist_ok=True)
+        
     report_name = os.path.join(reports_dir, f"report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.html")
     
     pytest_args = target_paths + ["-v", f"--html={report_name}", "--self-contained-html"]
     
-    exit_code = pytest.main(pytest_args, plugins=[SafeExecutionPlugin()])
+    # pytest 内部的插件在某些系统环境下打开文件时可能遇到 PermissionError
+    # 这里通过捕获外层异常或确保文件可写来防御
+    try:
+        # 预先创建一个空文件并赋予权限
+        with open(report_name, 'w') as f:
+            pass
+        os.chmod(report_name, 0o666)
+    except Exception as e:
+        logging.warning(f"⚠️ 预先创建报告文件失败: {e}")
     
-    logging.info(f"📊 本地报告已生成: {report_name}")
-    return exit_code
+    try:
+        exit_code = pytest.main(pytest_args, plugins=[SafeExecutionPlugin()])
+        logging.info(f"📊 本地报告已生成: {report_name}")
+        return exit_code
+    except Exception as e:
+        logging.error(f"❌ pytest 执行过程中发生异常: {e}")
+        return 1
