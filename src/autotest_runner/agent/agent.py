@@ -272,8 +272,7 @@ class AutoTestAgent:
             # 寻找生成的 HTML 报告并回传内容
             html_report = None
             import re
-            report_match = re.search(r"本地报告已生成:\s*([^
-]+)", full_output)
+            report_match = re.search(r"本地报告已生成:\s*([^\\n]+)", full_output)
             if report_match:
                 latest_report_file = report_match.group(1).strip()
                 try:
