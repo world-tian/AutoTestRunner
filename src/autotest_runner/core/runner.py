@@ -27,9 +27,13 @@ def run_tests_locally(target_paths, report_to_cloud=False, hub_url=None, token=N
         
     logging.info(f"🚀 本地执行目标: {target_paths}")
     
-    # 确保 reports 目录存在
-    os.makedirs("reports", exist_ok=True)
-    report_name = f"reports/report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.html"
+    # 获取绝对路径，避免在不同 cwd 下产生权限/路径问题
+    abs_cwd = os.path.abspath(os.getcwd())
+    reports_dir = os.path.join(abs_cwd, "reports")
+    
+    # 确保 reports 目录存在并有权限
+    os.makedirs(reports_dir, exist_ok=True)
+    report_name = os.path.join(reports_dir, f"report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.html")
     
     pytest_args = target_paths + ["-v", f"--html={report_name}", "--self-contained-html"]
     
