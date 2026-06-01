@@ -1,0 +1,6 @@
+name: "GUI Screenshot Test Plan"
+targets:
+  - "tests/GUI/screenshot.py"
+  - "tests/GUI/test_camera.py"
+env:
+  TEST_ENV: "local"

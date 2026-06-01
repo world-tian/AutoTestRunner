@@ -16,7 +16,7 @@ def main():
     # run command
     run_parser = subparsers.add_parser("run", help="在本地执行测试用例")
     run_parser.add_argument("path", default="testcases/", nargs="?", help="测试用例路径")
-    run_parser.add_argument("--plan", help="指定 YAML 测试计划文件")
+    run_parser.add_argument("-plan", "--plan", help="指定 YAML 测试计划文件")
     run_parser.add_argument("--hub-url", help="[协同模式] AutoTestHub 云端地址")
     run_parser.add_argument("--token", help="[协同模式] 云端鉴权 Token")
 

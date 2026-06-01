@@ -11,7 +11,7 @@ pip install -e .
 
 ## 🛠️ 核心特性
 1. **Try-Except-Finally 硬件安全执行引擎**：保证测试崩溃时，设备锁等资源能被安全释放。
-2. **内置硬件测试工具箱 (Toolbox)**：开箱即用的 `ADBTool`, `SerialTool`, `RelayTool`（继电器控制）。
+2. **内置硬件测试工具箱 (Toolbox)**：开箱即用的 `ADBTool`, `SerialTool`, `RelayTool`（继电器控制），以及新集成的 `U2Tool`（基于 uiautomator2 的安卓 UI 自动化）。
 3. **YAML 测试计划驱动 (Test Plan)**：支持通过配置文件圈定测试范围、注入环境变量。
 4. **双模运行 (Dual-Mode)**：离线模式生成本地 HTML 报告；协同模式可将结果上报云端。
 
@@ -21,13 +21,20 @@ pip install -e .
 ```python
 import os
 from autotest_runner import autotest
-from autotest_runner.tools import RelayTool
+from autotest_runner.tools import RelayTool, U2Tool
 
 @autotest(case_id="TC-001", title="继电器测试", priority="P0")
 def test_relay():
     # 框架支持从 yaml 中读取并自动注入环境变量
     relay = RelayTool(ip_address=os.getenv("DEVICE_IP"))
     relay.restart(port=1)
+
+@autotest(case_id="TC-002", title="安卓 UI 自动化测试", priority="P0")
+def test_android_ui():
+    # 使用集成的 uiautomator2 工具
+    u2 = U2Tool()
+    u2.app_start("com.android.settings")
+    u2.screenshot("settings.jpg")
 ```
 
 ### 2. 编写测试计划 (plan.yaml)
@@ -42,20 +49,21 @@ env:
 ### 3. 执行测试计划
 ```bash
 # 基于 YAML 测试计划执行
-autotest-runner run --plan examples/plan.yaml
+# 使用 python -m 模块方式直接启动（支持 -plan 或 --plan）
+python3 -m autotest_runner run -plan examples/plan.yaml
 ```
 
 ### 4. 云端协同同步
 ```bash
 # 将代码元数据同步到云端
-autotest-runner sync examples/ --hub-url=https://hub.local --token=XXX
+python3 -m autotest_runner sync examples/ --hub-url=https://hub.local --token=XXX
 ```
 
 ## 🏗️ 项目脚手架 (目录与用例管理)
 测试用例写在哪？报告存哪？不需要自己从头建！框架提供了标准的工程脚手架。
 
 ```bash
-autotest-runner init my_project
+python3 -m autotest_runner init my_project
 ```
 执行后会生成如下标准结构：
 ```text
@@ -70,4 +78,4 @@ my_project/
 ├── reports/           # 每次执行自动生成的本地 HTML 报告存放于此
 └── logs/              # 硬件执行的串口/系统日志存放于此
 ```
-**云端映射机制**：当你执行 `autotest-runner sync testcases/` 时，本地 `testcases` 下的文件夹层级（如 `network`）会自动映射为云端 `AutoTestHub` 中的**模块树 (Module Tree)**，保证云端与本地的结构完全一致！
+**云端映射机制**：当你执行 `python3 -m autotest_runner sync testcases/` 时，本地 `testcases` 下的文件夹层级（如 `network`）会自动映射为云端 `AutoTestHub` 中的**模块树 (Module Tree)**，保证云端与本地的结构完全一致！

@@ -32,7 +32,8 @@ def run_tests_locally(target_paths, report_to_cloud=False, hub_url=None, token=N
         abs_cwd = os.path.abspath(os.getcwd())
         logging.info(f"📁 使用当前工作目录: {abs_cwd}")
         
-    reports_dir = os.path.join(abs_cwd, "reports")
+    exec_source = os.getenv("AUTOTEST_SOURCE", "local")
+    reports_dir = os.path.join(abs_cwd, "reports", exec_source)
     
     # 彻底解决 MacOS Sandbox/SIP 导致的 Operation not permitted 权限问题
     test_file = os.path.join(reports_dir, ".test_write")
@@ -42,8 +43,8 @@ def run_tests_locally(target_paths, report_to_cloud=False, hub_url=None, token=N
             f.write("test")
         os.remove(test_file)
     except Exception as e:
-        logging.warning(f"⚠️ 当前目录无写入权限 ({e})，报告将重定向至 /tmp/autotest_reports")
-        reports_dir = "/tmp/autotest_reports"
+        logging.warning(f"⚠️ 当前目录无写入权限 ({e})，报告将重定向至 /tmp/autotest_reports/{exec_source}")
+        reports_dir = f"/tmp/autotest_reports/{exec_source}"
         os.makedirs(reports_dir, exist_ok=True)
         
     report_name = os.path.join(reports_dir, f"report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.html")

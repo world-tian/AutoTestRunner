@@ -9,3 +9,6 @@ class SerialTool:
     def send_command(self, cmd):
         logging.info(f"📟 [Serial] 发送串口指令至 {self.port}: {cmd}")
         return "mock_response\nOK"
+
+    def list_ports(self):
+        return ["/dev/ttyUSB0", "/dev/ttyUSB1"]

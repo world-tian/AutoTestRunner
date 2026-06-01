@@ -195,7 +195,8 @@ class AutoTestAgent:
             self._update_task_status(task_id, "running")
             
             if not test_command:
-                raise ValueError("Test command is not specified (e.g. pytest tests/)")
+                test_command = "python3 -m autotest_runner run -plan examples/plan.yaml"
+                logger.info(f"Test command is empty, falling back to default: {test_command}")
                 
             # 执行实际测试
             logger.info(f"Executing test on device {device_id}...")
@@ -206,6 +207,7 @@ class AutoTestAgent:
             env = os.environ.copy()
             if device_id:
                 env["AUTOTEST_DEVICE_ID"] = device_id
+            env["AUTOTEST_SOURCE"] = "online"  # 标记为线上云端触发
             
             # 使用全局配置的工作目录优先，如果未配置，再使用 working_dir 或当前目录
             global_workspace = os.getenv("AUTOTEST_WORKSPACE")
@@ -214,12 +216,13 @@ class AutoTestAgent:
             else:
                 cwd = working_dir if working_dir and os.path.exists(working_dir) else os.getcwd()
             
-            # 自动将 pytest 替换为 python -m pytest，以满足用户在特定目录直接启动的习惯
-            if test_command and test_command.startswith("pytest"):
-                test_command = test_command.replace("pytest", "python -m pytest", 1)
-            elif test_command and test_command.startswith("autotest-runner run"):
-                # 如果是 autotest-runner run，也可以转换为 python -m pytest (这里只是尽量兼容)
-                pass
+            # 自动转换旧命令和原始 pytest 命令为 python3 -m autotest_runner run，以确保报告正常生成
+            if test_command:
+                if "autotest-runner run" in test_command:
+                    test_command = test_command.replace("autotest-runner run", "python3 -m autotest_runner run")
+                    test_command = test_command.replace("./venv/bin/python3", "python3")
+                elif test_command.startswith("pytest"):
+                    test_command = test_command.replace("pytest", "python3 -m autotest_runner run", 1)
                 
             logger.info(f"Running command: {test_command} in {cwd}")
             

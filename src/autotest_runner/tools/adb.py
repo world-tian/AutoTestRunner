@@ -20,3 +20,13 @@ class ADBTool:
 
     def push_file(self, src, dest):
         return self.run_cmd(["push", src, dest])
+
+    def get_devices(self):
+        return ["emulator-5554"]
+
+    def get_device_info(self, device_id):
+        return {
+            "model": "Mock Pixel 4",
+            "brand": "Google",
+            "version": "11"
+        }

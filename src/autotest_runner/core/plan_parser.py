@@ -9,7 +9,7 @@ def parse_test_plan(plan_file):
         return None
         
     with open(plan_file, 'r', encoding='utf-8') as f:
-        plan = yaml.safe_load(f)
+        plan = yaml.safe_load(f) or {}
         
     logging.info(f"📋 加载测试计划: {plan.get('name', 'Unnamed Plan')}")
     
