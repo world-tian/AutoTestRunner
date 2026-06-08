@@ -11,7 +11,8 @@ setup(
         "pytest>=7.0.0",
         "requests>=2.25.1",
         "pytest-html>=3.2.0",
-        "PyYAML>=6.0"
+        "PyYAML>=6.0",
+        "pyserial>=3.5"
     ],
     entry_points={
         "console_scripts": [

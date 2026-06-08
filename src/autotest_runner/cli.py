@@ -2,7 +2,7 @@ import argparse
 import sys
 import logging
 from .core.runner import run_tests_locally
-from .core.plan_parser import parse_test_plan
+from .core.plan_parser import load_test_plan
 from .core.scaffold import init_project
 
 def main():
@@ -34,14 +34,15 @@ def main():
 
     elif args.command == "run":
         target_path = args.path
+        plan_config = None
         if args.plan:
-            targets = parse_test_plan(args.plan)
-            if not targets:
+            plan_config = load_test_plan(args.plan)
+            if not plan_config:
                 sys.exit(1)
-            target_path = targets
+            target_path = plan_config.get("targets", [])
             
         report_to_cloud = bool(args.hub_url and args.token)
-        exit_code = run_tests_locally(target_path, report_to_cloud, args.hub_url, args.token)
+        exit_code = run_tests_locally(target_path, report_to_cloud, args.hub_url, args.token, plan_config=plan_config)
         sys.exit(exit_code)
         
     elif args.command == "sync":

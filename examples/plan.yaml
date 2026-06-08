@@ -3,3 +3,41 @@ targets:
   - "examples/test_hardware.py"
 env:
   DEVICE_IP: "192.168.1.100"
+
+execution:
+  continue_on_fail: true
+  keep_on_fail: false
+  keep_on_fail_timeout_sec: 0
+  cleanup_between_cases: true
+
+serial:
+  enabled: false
+  port: "/dev/ttyUSB0"
+  baudrate: 115200
+  log: true
+  fail_patterns:
+    - "ERROR"
+    - "ASSERT"
+    - "HardFault"
+    - "panic"
+  timeout_sec: 10
+
+adb:
+  enabled: false
+  device_id: ""
+  clear_logcat_before_case: true
+  collect_on_fail:
+    logcat: true
+    bugreport: false
+    screenshot: true
+    pull_paths: []
+
+cleanup:
+  enabled: false
+  actions:
+    - type: adb
+      command: ["shell", "logcat", "-c"]
+
+artifacts:
+  output_dir: "reports/artifacts"
+  zip_logs: true

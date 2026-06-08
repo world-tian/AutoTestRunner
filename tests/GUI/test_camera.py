@@ -6,6 +6,11 @@ def kill_photo_booth():
     """杀掉 Photo Booth 进程"""
     subprocess.run('killall "Photo Booth"', shell=True, stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL)
 
+def has_photo_booth():
+    """检查当前机器是否安装 Photo Booth。"""
+    result = subprocess.run('open -Ra "Photo Booth"', shell=True, stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL)
+    return result.returncode == 0
+
 @pytest.fixture(autouse=True)
 def manage_camera_app():
     """pytest 专用的前置和后置操作：确保测试前后关闭应用"""
@@ -17,6 +22,9 @@ def test_mac_camera_open():
     """
     测试打开 Mac 摄像头应用 (Photo Booth)
     """
+    if not has_photo_booth():
+        pytest.skip("Photo Booth is not available on this machine")
+
     # 兼容直接通过 python 执行时的前置清理
     kill_photo_booth()
     

@@ -2,7 +2,9 @@ import subprocess
 import sys
 import os
 import logging
+import json
 from datetime import datetime
+from pathlib import Path
 
 # 尝试加载全局环境变量配置
 try:
@@ -17,7 +19,7 @@ except ImportError:
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-def run_tests_locally(target_paths, report_to_cloud=False, hub_url=None, token=None):
+def run_tests_locally(target_paths, report_to_cloud=False, hub_url=None, token=None, plan_config=None):
     if isinstance(target_paths, str):
         target_paths = [target_paths]
         
@@ -48,9 +50,19 @@ def run_tests_locally(target_paths, report_to_cloud=False, hub_url=None, token=N
         os.makedirs(reports_dir, exist_ok=True)
         
     report_name = os.path.join(reports_dir, f"report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.html")
+
+    runtime_plan_arg = []
+    if plan_config:
+        plan_snapshot = Path(reports_dir) / "runtime_plan.json"
+        plan_snapshot.write_text(json.dumps(plan_config, ensure_ascii=False, indent=2), encoding="utf-8")
+        runtime_plan_arg = [
+            "-p",
+            "autotest_runner.pytest_plugin",
+            f"--autotest-plan-config={plan_snapshot}",
+        ]
     
     # 改为使用 python -m pytest 直接在指定目录下启动，满足用户的习惯
-    pytest_args = [sys.executable, "-m", "pytest"] + target_paths + ["-v", f"--html={report_name}", "--self-contained-html", "-p", "no:cacheprovider"]
+    pytest_args = [sys.executable, "-m", "pytest"] + target_paths + runtime_plan_arg + ["-v", f"--html={report_name}", "--self-contained-html", "-p", "no:cacheprovider"]
     
     try:
         logging.info(f"⚙️ 拉起子进程执行命令: {' '.join(pytest_args)}")
