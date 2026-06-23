@@ -1,0 +1,166 @@
+/Users/bytedance/Documents/AutoTestRunner/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-05-29 13:22:16,048 - __main__ - INFO - AutoTest Agent initialized: Agent-F962XQ2VN4
+2026-05-29 13:22:16,048 - __main__ - INFO -   Server: http://localhost:8000
+2026-05-29 13:22:16,048 - __main__ - INFO - Starting AutoTest Agent...
+2026-05-29 13:22:16,048 - __main__ - INFO - AutoTest Agent started successfully
+2026-05-29 13:22:16,071 - __main__ - INFO - Registered with server, agent_id: b267e00d-7cff-429d-b194-8a06e05e453c
+2026-05-29 13:23:56,273 - __main__ - INFO - Received 1 new tasks
+2026-05-29 13:23:56,408 - __main__ - INFO - Executing task ea0978ec-065c-4b03-a347-b2b0b519071d for run 79826654-82d4-46db-b62e-390fd0934ee2
+2026-05-29 13:23:56,409 - __main__ - INFO -   Working Dir: None
+2026-05-29 13:23:56,409 - __main__ - INFO -   Command: None
+2026-05-29 13:23:56,452 - __main__ - ERROR - Task ea0978ec-065c-4b03-a347-b2b0b519071d failed with exception: Test command is not specified (e.g. pytest tests/)
+2026-05-29 13:24:06,292 - __main__ - INFO - Received 1 new tasks
+2026-05-29 13:24:06,487 - __main__ - INFO - Executing task ea0978ec-065c-4b03-a347-b2b0b519071d for run 79826654-82d4-46db-b62e-390fd0934ee2
+2026-05-29 13:24:06,487 - __main__ - INFO -   Working Dir: None
+2026-05-29 13:24:06,487 - __main__ - INFO -   Command: None
+2026-05-29 13:24:06,496 - __main__ - ERROR - Task ea0978ec-065c-4b03-a347-b2b0b519071d failed with exception: Test command is not specified (e.g. pytest tests/)
+2026-05-29 13:24:16,322 - __main__ - INFO - Received 1 new tasks
+2026-05-29 13:24:16,543 - __main__ - INFO - Executing task ea0978ec-065c-4b03-a347-b2b0b519071d for run 79826654-82d4-46db-b62e-390fd0934ee2
+2026-05-29 13:24:16,543 - __main__ - INFO -   Working Dir: None
+2026-05-29 13:24:16,544 - __main__ - INFO -   Command: None
+2026-05-29 13:24:16,558 - __main__ - ERROR - Task ea0978ec-065c-4b03-a347-b2b0b519071d failed with exception: Test command is not specified (e.g. pytest tests/)
+2026-05-29 13:24:26,339 - __main__ - INFO - Received 1 new tasks
+2026-05-29 13:24:26,603 - __main__ - INFO - Executing task ea0978ec-065c-4b03-a347-b2b0b519071d for run 79826654-82d4-46db-b62e-390fd0934ee2
+2026-05-29 13:24:26,604 - __main__ - INFO -   Working Dir: None
+2026-05-29 13:24:26,604 - __main__ - INFO -   Command: None
+2026-05-29 13:24:26,618 - __main__ - ERROR - Task ea0978ec-065c-4b03-a347-b2b0b519071d failed with exception: Test command is not specified (e.g. pytest tests/)
+2026-05-29 13:24:36,359 - __main__ - INFO - Received 1 new tasks
+2026-05-29 13:24:36,668 - __main__ - INFO - Executing task ea0978ec-065c-4b03-a347-b2b0b519071d for run 79826654-82d4-46db-b62e-390fd0934ee2
+2026-05-29 13:24:36,668 - __main__ - INFO -   Working Dir: None
+2026-05-29 13:24:36,669 - __main__ - INFO -   Command: None
+2026-05-29 13:24:36,679 - __main__ - ERROR - Task ea0978ec-065c-4b03-a347-b2b0b519071d failed with exception: Test command is not specified (e.g. pytest tests/)
+2026-05-29 13:24:46,390 - __main__ - INFO - Received 1 new tasks
+2026-05-29 13:24:46,722 - __main__ - INFO - Executing task ea0978ec-065c-4b03-a347-b2b0b519071d for run 79826654-82d4-46db-b62e-390fd0934ee2
+2026-05-29 13:24:46,722 - __main__ - INFO -   Working Dir: None
+2026-05-29 13:24:46,723 - __main__ - INFO -   Command: None
+2026-05-29 13:24:46,737 - __main__ - ERROR - Task ea0978ec-065c-4b03-a347-b2b0b519071d failed with exception: Test command is not specified (e.g. pytest tests/)
+2026-05-29 13:24:56,409 - __main__ - INFO - Received 1 new tasks
+2026-05-29 13:24:56,782 - __main__ - INFO - Executing task ea0978ec-065c-4b03-a347-b2b0b519071d for run 79826654-82d4-46db-b62e-390fd0934ee2
+2026-05-29 13:24:56,782 - __main__ - INFO -   Working Dir: None
+2026-05-29 13:24:56,783 - __main__ - INFO -   Command: None
+2026-05-29 13:24:56,799 - __main__ - ERROR - Task ea0978ec-065c-4b03-a347-b2b0b519071d failed with exception: Test command is not specified (e.g. pytest tests/)
+2026-05-29 13:25:06,441 - __main__ - INFO - Received 1 new tasks
+2026-05-29 13:25:06,848 - __main__ - INFO - Executing task ea0978ec-065c-4b03-a347-b2b0b519071d for run 79826654-82d4-46db-b62e-390fd0934ee2
+2026-05-29 13:25:06,849 - __main__ - INFO -   Working Dir: None
+2026-05-29 13:25:06,849 - __main__ - INFO -   Command: None
+2026-05-29 13:25:06,865 - __main__ - ERROR - Task ea0978ec-065c-4b03-a347-b2b0b519071d failed with exception: Test command is not specified (e.g. pytest tests/)
+2026-05-29 13:25:16,483 - __main__ - INFO - Received 1 new tasks
+2026-05-29 13:25:16,918 - __main__ - INFO - Executing task ea0978ec-065c-4b03-a347-b2b0b519071d for run 79826654-82d4-46db-b62e-390fd0934ee2
+2026-05-29 13:25:16,920 - __main__ - INFO -   Working Dir: None
+2026-05-29 13:25:16,920 - __main__ - INFO -   Command: None
+2026-05-29 13:25:16,928 - __main__ - ERROR - Task ea0978ec-065c-4b03-a347-b2b0b519071d failed with exception: Test command is not specified (e.g. pytest tests/)
+2026-05-29 13:25:26,519 - __main__ - INFO - Received 1 new tasks
+2026-05-29 13:25:26,974 - __main__ - INFO - Executing task ea0978ec-065c-4b03-a347-b2b0b519071d for run 79826654-82d4-46db-b62e-390fd0934ee2
+2026-05-29 13:25:26,974 - __main__ - INFO -   Working Dir: None
+2026-05-29 13:25:26,974 - __main__ - INFO -   Command: None
+2026-05-29 13:25:26,991 - __main__ - ERROR - Task ea0978ec-065c-4b03-a347-b2b0b519071d failed with exception: Test command is not specified (e.g. pytest tests/)
+2026-05-29 13:26:37,888 - __main__ - INFO - Received 1 new tasks
+2026-05-29 13:26:38,302 - __main__ - INFO - Executing task ef4cd10b-b9be-46d3-977e-068cb13dbc7f for run f3d18a2d-251e-447f-ac3f-932b0a00fd0f
+2026-05-29 13:26:38,302 - __main__ - INFO -   Working Dir: /Users/bytedance/Documents/AutoTestRunner
+2026-05-29 13:26:38,302 - __main__ - INFO -   Command: ./venv/bin/autotest-runner run examples/test_hardware.py
+2026-05-29 13:26:38,324 - __main__ - INFO - Executing test on device None...
+2026-05-29 13:26:38,325 - __main__ - INFO - Running command: ./venv/bin/autotest-runner run examples/test_hardware.py in /Users/bytedance/Documents/AutoTestRunner
+2026-05-29 13:26:38,763 - __main__ - INFO - [Task ef4cd10b-b9be-46d3-977e-068cb13dbc7f] 2026-05-29 13:26:38,763 - INFO - 🚀 本地执行目标: ['examples/test_hardware.py']
+2026-05-29 13:26:39,180 - __main__ - INFO - [Task ef4cd10b-b9be-46d3-977e-068cb13dbc7f] ============================= test session starts ==============================
+2026-05-29 13:26:39,180 - __main__ - INFO - [Task ef4cd10b-b9be-46d3-977e-068cb13dbc7f] platform darwin -- Python 3.9.6, pytest-8.4.2, pluggy-1.6.0 -- /Users/bytedance/Documents/AutoTestRunner/venv/bin/python3
+2026-05-29 13:26:39,180 - __main__ - INFO - [Task ef4cd10b-b9be-46d3-977e-068cb13dbc7f] cachedir: .pytest_cache
+2026-05-29 13:26:39,180 - __main__ - INFO - [Task ef4cd10b-b9be-46d3-977e-068cb13dbc7f] metadata: {'Python': '3.9.6', 'Platform': 'macOS-26.4.1-arm64-arm-64bit', 'Packages': {'pytest': '8.4.2', 'pluggy': '1.6.0'}, 'Plugins': {'metadata': '3.1.1', 'html': '4.2.0'}, 'CI': '1'}
+2026-05-29 13:26:39,180 - __main__ - INFO - [Task ef4cd10b-b9be-46d3-977e-068cb13dbc7f] rootdir: /Users/bytedance/Documents/AutoTestRunner
+2026-05-29 13:26:39,180 - __main__ - INFO - [Task ef4cd10b-b9be-46d3-977e-068cb13dbc7f] configfile: pytest.ini
+2026-05-29 13:26:39,180 - __main__ - INFO - [Task ef4cd10b-b9be-46d3-977e-068cb13dbc7f] plugins: metadata-3.1.1, html-4.2.0
+2026-05-29 13:26:39,184 - __main__ - INFO - [Task ef4cd10b-b9be-46d3-977e-068cb13dbc7f] collecting ... collected 2 items
+2026-05-29 13:26:39,184 - __main__ - INFO - [Task ef4cd10b-b9be-46d3-977e-068cb13dbc7f] 
+2026-05-29 13:26:39,185 - __main__ - INFO - [Task ef4cd10b-b9be-46d3-977e-068cb13dbc7f] examples/test_hardware.py::test_connection
+2026-05-29 13:26:39,185 - __main__ - INFO - [Task ef4cd10b-b9be-46d3-977e-068cb13dbc7f] -------------------------------- live log call ---------------------------------
+2026-05-29 13:26:39,185 - __main__ - INFO - [Task ef4cd10b-b9be-46d3-977e-068cb13dbc7f] 2026-05-29 13:26:39 [    INFO] ▶️ [Pre-case] 准备执行: examples/test_hardware.py::test_connection (runner.py:11)
+2026-05-29 13:26:39,185 - __main__ - INFO - [Task ef4cd10b-b9be-46d3-977e-068cb13dbc7f] 2026-05-29 13:26:39 [    INFO] ✅ [Case-run] 执行通过: examples/test_hardware.py::test_connection (runner.py:14)
+2026-05-29 13:26:39,185 - __main__ - INFO - [Task ef4cd10b-b9be-46d3-977e-068cb13dbc7f] 2026-05-29 13:26:39 [    INFO] ⏹ [Post-case] 兜底清理资源... (runner.py:22)
+2026-05-29 13:26:39,186 - __main__ - INFO - [Task ef4cd10b-b9be-46d3-977e-068cb13dbc7f] PASSED                                                                   [ 50%]
+2026-05-29 13:26:39,186 - __main__ - INFO - [Task ef4cd10b-b9be-46d3-977e-068cb13dbc7f] examples/test_hardware.py::test_sensor
+2026-05-29 13:26:39,186 - __main__ - INFO - [Task ef4cd10b-b9be-46d3-977e-068cb13dbc7f] -------------------------------- live log call ---------------------------------
+2026-05-29 13:26:39,186 - __main__ - INFO - [Task ef4cd10b-b9be-46d3-977e-068cb13dbc7f] 2026-05-29 13:26:39 [    INFO] ▶️ [Pre-case] 准备执行: examples/test_hardware.py::test_sensor (runner.py:11)
+2026-05-29 13:26:39,186 - __main__ - INFO - [Task ef4cd10b-b9be-46d3-977e-068cb13dbc7f] 2026-05-29 13:26:39 [    INFO] ✅ [Case-run] 执行通过: examples/test_hardware.py::test_sensor (runner.py:14)
+2026-05-29 13:26:39,186 - __main__ - INFO - [Task ef4cd10b-b9be-46d3-977e-068cb13dbc7f] 2026-05-29 13:26:39 [    INFO] ⏹ [Post-case] 兜底清理资源... (runner.py:22)
+2026-05-29 13:26:39,254 - __main__ - INFO - [Task ef4cd10b-b9be-46d3-977e-068cb13dbc7f] PASSED                                                                   [100%]2026-05-29 13:26:39,254 - INFO - 📊 本地报告已生成: reports/report_20260529_132638.html
+2026-05-29 13:26:39,254 - __main__ - INFO - [Task ef4cd10b-b9be-46d3-977e-068cb13dbc7f] 
+2026-05-29 13:26:39,254 - __main__ - INFO - [Task ef4cd10b-b9be-46d3-977e-068cb13dbc7f] 
+2026-05-29 13:26:39,254 - __main__ - INFO - [Task ef4cd10b-b9be-46d3-977e-068cb13dbc7f] - Generated html report: file:///Users/bytedance/Documents/AutoTestRunner/reports/report_20260529_132638.html -
+2026-05-29 13:26:39,254 - __main__ - INFO - [Task ef4cd10b-b9be-46d3-977e-068cb13dbc7f] ============================== 2 passed in 0.06s ===============================
+2026-05-29 13:26:39,269 - __main__ - INFO - Task ef4cd10b-b9be-46d3-977e-068cb13dbc7f completed successfully
+2026-05-29 13:30:18,521 - __main__ - INFO - Received 1 new tasks
+2026-05-29 13:30:19,309 - __main__ - INFO - Executing task 95f585bd-72e0-48b8-84f1-3d4b325e81b2 for run fac3f2b4-25d1-4bd1-b07f-cfaaf72d47bf
+2026-05-29 13:30:19,310 - __main__ - INFO -   Working Dir: None
+2026-05-29 13:30:19,310 - __main__ - INFO -   Command: None
+2026-05-29 13:30:19,333 - __main__ - ERROR - Task 95f585bd-72e0-48b8-84f1-3d4b325e81b2 failed with exception: Test command is not specified (e.g. pytest tests/)
+2026-05-29 14:08:45,364 - __main__ - INFO - Received 1 new tasks
+2026-05-29 14:08:45,525 - __main__ - INFO - Executing task 80685ab0-a20e-4617-9d93-8a0674ef6bce for run 6da3bbd6-e391-46c9-a247-75c7a921af05
+2026-05-29 14:08:45,525 - __main__ - INFO -   Working Dir: None
+2026-05-29 14:08:45,525 - __main__ - INFO -   Command: None
+2026-05-29 14:08:45,540 - __main__ - ERROR - Task 80685ab0-a20e-4617-9d93-8a0674ef6bce failed with exception: Test command is not specified (e.g. pytest tests/)
+2026-05-29 14:09:25,492 - __main__ - INFO - Received 1 new tasks
+2026-05-29 14:09:25,675 - __main__ - INFO - Executing task b077d388-3e42-4f11-9888-365f9b7b964e for run 6df2b793-abbd-4a8b-a8c8-cd5d37196d69
+2026-05-29 14:09:25,676 - __main__ - INFO -   Working Dir: /Users/bytedance/Documents/AutoTestRunner
+2026-05-29 14:09:25,676 - __main__ - INFO -   Command: ./venv/bin/autotest-runner run examples/test_hardware.py
+2026-05-29 14:09:25,695 - __main__ - INFO - Executing test on device 42a35d1f-73fa-4e23-af58-366423d1ac73...
+2026-05-29 14:09:25,695 - __main__ - INFO - Running command: ./venv/bin/autotest-runner run examples/test_hardware.py in /Users/bytedance/Documents/AutoTestRunner
+2026-05-29 14:09:26,414 - __main__ - INFO - [Task b077d388-3e42-4f11-9888-365f9b7b964e] 2026-05-29 14:09:26,414 - INFO - 🚀 本地执行目标: ['examples/test_hardware.py']
+2026-05-29 14:09:26,853 - __main__ - INFO - [Task b077d388-3e42-4f11-9888-365f9b7b964e] ============================= test session starts ==============================
+2026-05-29 14:09:26,853 - __main__ - INFO - [Task b077d388-3e42-4f11-9888-365f9b7b964e] platform darwin -- Python 3.9.6, pytest-8.4.2, pluggy-1.6.0 -- /Users/bytedance/Documents/AutoTestRunner/venv/bin/python3
+2026-05-29 14:09:26,853 - __main__ - INFO - [Task b077d388-3e42-4f11-9888-365f9b7b964e] cachedir: .pytest_cache
+2026-05-29 14:09:26,853 - __main__ - INFO - [Task b077d388-3e42-4f11-9888-365f9b7b964e] metadata: {'Python': '3.9.6', 'Platform': 'macOS-26.4.1-arm64-arm-64bit', 'Packages': {'pytest': '8.4.2', 'pluggy': '1.6.0'}, 'Plugins': {'metadata': '3.1.1', 'html': '4.2.0'}, 'CI': '1'}
+2026-05-29 14:09:26,853 - __main__ - INFO - [Task b077d388-3e42-4f11-9888-365f9b7b964e] rootdir: /Users/bytedance/Documents/AutoTestRunner
+2026-05-29 14:09:26,853 - __main__ - INFO - [Task b077d388-3e42-4f11-9888-365f9b7b964e] configfile: pytest.ini
+2026-05-29 14:09:26,853 - __main__ - INFO - [Task b077d388-3e42-4f11-9888-365f9b7b964e] plugins: metadata-3.1.1, html-4.2.0
+2026-05-29 14:09:26,859 - __main__ - INFO - [Task b077d388-3e42-4f11-9888-365f9b7b964e] collecting ... collected 2 items
+2026-05-29 14:09:26,859 - __main__ - INFO - [Task b077d388-3e42-4f11-9888-365f9b7b964e] 
+2026-05-29 14:09:26,859 - __main__ - INFO - [Task b077d388-3e42-4f11-9888-365f9b7b964e] examples/test_hardware.py::test_connection
+2026-05-29 14:09:26,859 - __main__ - INFO - [Task b077d388-3e42-4f11-9888-365f9b7b964e] -------------------------------- live log call ---------------------------------
+2026-05-29 14:09:26,860 - __main__ - INFO - [Task b077d388-3e42-4f11-9888-365f9b7b964e] 2026-05-29 14:09:26 [    INFO] ▶️ [Pre-case] 准备执行: examples/test_hardware.py::test_connection (runner.py:11)
+2026-05-29 14:09:26,860 - __main__ - INFO - [Task b077d388-3e42-4f11-9888-365f9b7b964e] 2026-05-29 14:09:26 [    INFO] ✅ [Case-run] 执行通过: examples/test_hardware.py::test_connection (runner.py:14)
+2026-05-29 14:09:26,860 - __main__ - INFO - [Task b077d388-3e42-4f11-9888-365f9b7b964e] 2026-05-29 14:09:26 [    INFO] ⏹ [Post-case] 兜底清理资源... (runner.py:22)
+2026-05-29 14:09:26,861 - __main__ - INFO - [Task b077d388-3e42-4f11-9888-365f9b7b964e] PASSED                                                                   [ 50%]
+2026-05-29 14:09:26,861 - __main__ - INFO - [Task b077d388-3e42-4f11-9888-365f9b7b964e] examples/test_hardware.py::test_sensor
+2026-05-29 14:09:26,861 - __main__ - INFO - [Task b077d388-3e42-4f11-9888-365f9b7b964e] -------------------------------- live log call ---------------------------------
+2026-05-29 14:09:26,861 - __main__ - INFO - [Task b077d388-3e42-4f11-9888-365f9b7b964e] 2026-05-29 14:09:26 [    INFO] ▶️ [Pre-case] 准备执行: examples/test_hardware.py::test_sensor (runner.py:11)
+2026-05-29 14:09:26,862 - __main__ - INFO - [Task b077d388-3e42-4f11-9888-365f9b7b964e] 2026-05-29 14:09:26 [    INFO] ✅ [Case-run] 执行通过: examples/test_hardware.py::test_sensor (runner.py:14)
+2026-05-29 14:09:26,862 - __main__ - INFO - [Task b077d388-3e42-4f11-9888-365f9b7b964e] 2026-05-29 14:09:26 [    INFO] ⏹ [Post-case] 兜底清理资源... (runner.py:22)
+2026-05-29 14:09:26,908 - __main__ - INFO - [Task b077d388-3e42-4f11-9888-365f9b7b964e] PASSED                                                                   [100%]2026-05-29 14:09:26,908 - INFO - 📊 本地报告已生成: reports/report_20260529_140926.html
+2026-05-29 14:09:26,908 - __main__ - INFO - [Task b077d388-3e42-4f11-9888-365f9b7b964e] 
+2026-05-29 14:09:26,908 - __main__ - INFO - [Task b077d388-3e42-4f11-9888-365f9b7b964e] 
+2026-05-29 14:09:26,908 - __main__ - INFO - [Task b077d388-3e42-4f11-9888-365f9b7b964e] - Generated html report: file:///Users/bytedance/Documents/AutoTestRunner/reports/report_20260529_140926.html -
+2026-05-29 14:09:26,908 - __main__ - INFO - [Task b077d388-3e42-4f11-9888-365f9b7b964e] ============================== 2 passed in 0.03s ===============================
+2026-05-29 14:09:26,923 - __main__ - INFO - Task b077d388-3e42-4f11-9888-365f9b7b964e completed successfully
+2026-05-29 14:35:19,941 - __main__ - INFO - Received 1 new tasks
+2026-05-29 14:35:20,188 - __main__ - INFO - Executing task b74c8155-fb4e-4e88-8894-d04ce73b8d1e for run ee89cd6e-bcb4-45b9-bb15-22607c2548a5
+2026-05-29 14:35:20,188 - __main__ - INFO -   Working Dir: /Users/bytedance/Documents/AutoTestRunner
+2026-05-29 14:35:20,188 - __main__ - INFO -   Command: ./venv/bin/autotest-runner run examples/test_hardware.py
+2026-05-29 14:35:20,210 - __main__ - INFO - Executing test on device 42a35d1f-73fa-4e23-af58-366423d1ac73...
+2026-05-29 14:35:20,211 - __main__ - INFO - Running command: ./venv/bin/autotest-runner run examples/test_hardware.py in /Users/bytedance/Documents/AutoTestRunner
+2026-05-29 14:35:20,808 - __main__ - INFO - [Task b74c8155-fb4e-4e88-8894-d04ce73b8d1e] 2026-05-29 14:35:20,807 - INFO - 🚀 本地执行目标: ['examples/test_hardware.py']
+2026-05-29 14:35:21,084 - __main__ - INFO - [Task b74c8155-fb4e-4e88-8894-d04ce73b8d1e] ============================= test session starts ==============================
+2026-05-29 14:35:21,084 - __main__ - INFO - [Task b74c8155-fb4e-4e88-8894-d04ce73b8d1e] platform darwin -- Python 3.9.6, pytest-8.4.2, pluggy-1.6.0 -- /Users/bytedance/Documents/AutoTestRunner/venv/bin/python3
+2026-05-29 14:35:21,084 - __main__ - INFO - [Task b74c8155-fb4e-4e88-8894-d04ce73b8d1e] cachedir: .pytest_cache
+2026-05-29 14:35:21,084 - __main__ - INFO - [Task b74c8155-fb4e-4e88-8894-d04ce73b8d1e] metadata: {'Python': '3.9.6', 'Platform': 'macOS-26.4.1-arm64-arm-64bit', 'Packages': {'pytest': '8.4.2', 'pluggy': '1.6.0'}, 'Plugins': {'metadata': '3.1.1', 'html': '4.2.0'}, 'CI': '1'}
+2026-05-29 14:35:21,084 - __main__ - INFO - [Task b74c8155-fb4e-4e88-8894-d04ce73b8d1e] rootdir: /Users/bytedance/Documents/AutoTestRunner
+2026-05-29 14:35:21,084 - __main__ - INFO - [Task b74c8155-fb4e-4e88-8894-d04ce73b8d1e] configfile: pytest.ini
+2026-05-29 14:35:21,084 - __main__ - INFO - [Task b74c8155-fb4e-4e88-8894-d04ce73b8d1e] plugins: metadata-3.1.1, html-4.2.0
+2026-05-29 14:35:21,088 - __main__ - INFO - [Task b74c8155-fb4e-4e88-8894-d04ce73b8d1e] collecting ... collected 2 items
+2026-05-29 14:35:21,088 - __main__ - INFO - [Task b74c8155-fb4e-4e88-8894-d04ce73b8d1e] 
+2026-05-29 14:35:21,088 - __main__ - INFO - [Task b74c8155-fb4e-4e88-8894-d04ce73b8d1e] examples/test_hardware.py::test_connection
+2026-05-29 14:35:21,088 - __main__ - INFO - [Task b74c8155-fb4e-4e88-8894-d04ce73b8d1e] -------------------------------- live log call ---------------------------------
+2026-05-29 14:35:21,088 - __main__ - INFO - [Task b74c8155-fb4e-4e88-8894-d04ce73b8d1e] 2026-05-29 14:35:21 [    INFO] ▶️ [Pre-case] 准备执行: examples/test_hardware.py::test_connection (runner.py:11)
+2026-05-29 14:35:21,088 - __main__ - INFO - [Task b74c8155-fb4e-4e88-8894-d04ce73b8d1e] 2026-05-29 14:35:21 [    INFO] ✅ [Case-run] 执行通过: examples/test_hardware.py::test_connection (runner.py:14)
+2026-05-29 14:35:21,088 - __main__ - INFO - [Task b74c8155-fb4e-4e88-8894-d04ce73b8d1e] 2026-05-29 14:35:21 [    INFO] ⏹ [Post-case] 兜底清理资源... (runner.py:22)
+2026-05-29 14:35:21,089 - __main__ - INFO - [Task b74c8155-fb4e-4e88-8894-d04ce73b8d1e] PASSED                                                                   [ 50%]
+2026-05-29 14:35:21,089 - __main__ - INFO - [Task b74c8155-fb4e-4e88-8894-d04ce73b8d1e] examples/test_hardware.py::test_sensor
+2026-05-29 14:35:21,089 - __main__ - INFO - [Task b74c8155-fb4e-4e88-8894-d04ce73b8d1e] -------------------------------- live log call ---------------------------------
+2026-05-29 14:35:21,089 - __main__ - INFO - [Task b74c8155-fb4e-4e88-8894-d04ce73b8d1e] 2026-05-29 14:35:21 [    INFO] ▶️ [Pre-case] 准备执行: examples/test_hardware.py::test_sensor (runner.py:11)
+2026-05-29 14:35:21,089 - __main__ - INFO - [Task b74c8155-fb4e-4e88-8894-d04ce73b8d1e] 2026-05-29 14:35:21 [    INFO] ✅ [Case-run] 执行通过: examples/test_hardware.py::test_sensor (runner.py:14)
+2026-05-29 14:35:21,090 - __main__ - INFO - [Task b74c8155-fb4e-4e88-8894-d04ce73b8d1e] 2026-05-29 14:35:21 [    INFO] ⏹ [Post-case] 兜底清理资源... (runner.py:22)
+2026-05-29 14:35:21,118 - __main__ - INFO - [Task b74c8155-fb4e-4e88-8894-d04ce73b8d1e] PASSED                                                                   [100%]2026-05-29 14:35:21,118 - INFO - 📊 本地报告已生成: reports/report_20260529_143520.html
+2026-05-29 14:35:21,118 - __main__ - INFO - [Task b74c8155-fb4e-4e88-8894-d04ce73b8d1e] 
+2026-05-29 14:35:21,118 - __main__ - INFO - [Task b74c8155-fb4e-4e88-8894-d04ce73b8d1e] 
+2026-05-29 14:35:21,118 - __main__ - INFO - [Task b74c8155-fb4e-4e88-8894-d04ce73b8d1e] - Generated html report: file:///Users/bytedance/Documents/AutoTestRunner/reports/report_20260529_143520.html -
+2026-05-29 14:35:21,118 - __main__ - INFO - [Task b74c8155-fb4e-4e88-8894-d04ce73b8d1e] ============================== 2 passed in 0.02s ===============================
+2026-05-29 14:35:21,132 - __main__ - INFO - Task b74c8155-fb4e-4e88-8894-d04ce73b8d1e completed successfully
