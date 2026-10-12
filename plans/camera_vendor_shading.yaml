@@ -1,0 +1,17 @@
+name: 厂商镜头标定 - LSC/Shading
+description: 用设备实拍的均匀灰/白场筛查中心边缘、四角和9x9亮度/颜色均匀性；仓库纯灰图仅能验证算法流程
+env:
+  # 默认用于流程验证；正式厂商验收请用 --picture 覆盖为实拍均匀灰/白场。
+  CAMERA_PICTURE: testcases/camera/images/valid_uniform_gray.png
+targets:
+  - testcases/camera/shading/P0
+  - testcases/camera/shading/P1
+cases:
+  - CAM-SHD-001
+  - CAM-SHD-002
+  - CAM-SHD-003
+  - CAM-SHD-004
+execution:
+  continue_on_fail: true
+  cleanup_between_cases: true
+  stop_on_collection_error: true

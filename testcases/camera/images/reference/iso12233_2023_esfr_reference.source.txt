@@ -1,0 +1,4 @@
+来源：Imatest examples（GitHub）中的 ISO 12233 2023 E-SFR 示例图。
+下载地址：https://raw.githubusercontent.com/imatest/examples/main/ISO%2012233%202023%20E-SFR%20Resolution/eSFR-ISO-23_001.jpg
+用途：高清视觉/版式参考图；文件是拍摄得到的靶图示例，不是可直接打印的原始靶卡，也不能替代实物 ISO 12233:2023 靶卡进行正式 MTF/SFR 验收。
+版本边界：ISO 12233:2023 e-SFR 使用四周期斜星；当前 ISO 官方页面列出的最新版为 ISO 12233:2024。

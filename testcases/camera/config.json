@@ -1,0 +1,23 @@
+{
+  "expected_size": [
+    512,
+    512
+  ],
+  "images": {
+    "default": "images/camera_test.jpg"
+  },
+  "priority": {
+    "default": "P0",
+    "labels": {
+      "P0": "必须通过：基础质量门禁",
+      "P1": "重要回归：发现问题需跟进",
+      "P2": "扩展验证：按场景选择",
+      "P3": "探索验证：按需执行"
+    }
+  },
+  "report": {
+    "title": "相机模块测试",
+    "filters": ["all", "passed", "failed", "skipped", "P0", "P1", "P2", "P3"],
+    "evidence_dir": "reports/camera"
+  }
+}

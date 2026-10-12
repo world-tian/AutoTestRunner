@@ -12,7 +12,10 @@ setup(
         "requests>=2.25.1",
         "pytest-html>=3.2.0",
         "PyYAML>=6.0",
-        "pyserial>=3.5"
+        "pyserial>=3.5",
+        "numpy>=1.24",
+        "Pillow>=10.0",
+        "opencv-python-headless>=4.8"
     ],
     entry_points={
         "console_scripts": [

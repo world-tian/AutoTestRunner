@@ -1,0 +1,9 @@
+{
+  "expected_size": [
+    512,
+    512
+  ],
+  "images": {
+    "default": "images/camera_test.jpg"
+  }
+}

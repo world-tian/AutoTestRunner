@@ -1,0 +1,1082 @@
+[
+  {
+    "local_case_id": "CAM-IMG-001",
+    "title": "CAM-IMG-001 图片可解析",
+    "priority": "P0",
+    "feature": "camera/output",
+    "test_class": "基础图像 / Output",
+    "description": "判断图像输出链路是否正常",
+    "preconditions": "正常照明、有纹理的实际输出图片，支持8-bit JPEG/PNG",
+    "steps": [
+      "准备场景：正常照明、有纹理的实际输出图片，支持8-bit JPEG/PNG",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/output/P0/test-output-image_parse/test_output_image_parse.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "图片完整解码成功，无损坏/截断",
+    "script_path": "output/P0/test-output-image_parse/test_output_image_parse.py",
+    "function": "test_output_image_parse"
+  },
+  {
+    "local_case_id": "CAM-IMG-002",
+    "title": "CAM-IMG-002 分辨率检查",
+    "priority": "P0",
+    "feature": "camera/output",
+    "test_class": "基础图像 / Output",
+    "description": "验证输出规格是否符合要求",
+    "preconditions": "正常照明、有纹理的实际输出图片，支持8-bit JPEG/PNG",
+    "steps": [
+      "准备场景：正常照明、有纹理的实际输出图片，支持8-bit JPEG/PNG",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/output/P0/test-output-output_resolution/test_output_output_resolution.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "按EXIF方向解码后宽高等于 expected_size",
+    "script_path": "output/P0/test-output-output_resolution/test_output_output_resolution.py",
+    "function": "test_output_output_resolution"
+  },
+  {
+    "local_case_id": "CAM-IMG-003",
+    "title": "CAM-IMG-003 全黑/全白/严重异常图像",
+    "priority": "P0",
+    "feature": "camera/output",
+    "test_class": "基础图像 / Output",
+    "description": "筛查全黑、全白或亮度近乎恒定的异常输出；不覆盖花屏和坏点",
+    "preconditions": "正常照明、有纹理的实际输出图片，支持8-bit JPEG/PNG",
+    "steps": [
+      "准备场景：正常照明、有纹理的实际输出图片，支持8-bit JPEG/PNG",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/output/P0/test-output-abnormal_frame/test_output_abnormal_frame.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "Y≤10 与 Y≥245 的像素占比各 < 0.98，亮度标准差 ≥ 1",
+    "script_path": "output/P0/test-output-abnormal_frame/test_output_abnormal_frame.py",
+    "function": "test_output_abnormal_frame"
+  },
+  {
+    "local_case_id": "CAM-IMG-004",
+    "title": "CAM-IMG-004 EXIF方向",
+    "priority": "P1",
+    "feature": "camera/output",
+    "test_class": "基础图像 / Output",
+    "description": "检查原始图片方向元数据是否存在且有效",
+    "preconditions": "正常照明、有纹理的实际输出图片，支持8-bit JPEG/PNG",
+    "steps": [
+      "准备场景：正常照明、有纹理的实际输出图片，支持8-bit JPEG/PNG",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/output/P1/test-output-exif_orientation/test_output_exif_orientation.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "EXIF Orientation 为 1～8，缺失时按默认方向 1处理",
+    "script_path": "output/P1/test-output-exif_orientation/test_output_exif_orientation.py",
+    "function": "test_output_exif_orientation"
+  },
+  {
+    "local_case_id": "CAM-IMG-005",
+    "title": "CAM-IMG-005 位深与通道",
+    "priority": "P1",
+    "feature": "camera/output",
+    "test_class": "基础图像 / Output",
+    "description": "检查输出是否为支持的8-bit RGB/RGBA图像",
+    "preconditions": "正常照明、有纹理的实际输出图片，支持8-bit JPEG/PNG",
+    "steps": [
+      "准备场景：正常照明、有纹理的实际输出图片，支持8-bit JPEG/PNG",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/output/P1/test-output-bit_depth_channel/test_output_bit_depth_channel.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "位深为8，通道为3或4",
+    "script_path": "output/P1/test-output-bit_depth_channel/test_output_bit_depth_channel.py",
+    "function": "test_output_bit_depth_channel"
+  },
+  {
+    "local_case_id": "CAM-AE-001",
+    "title": "CAM-AE-001 平均亮度",
+    "priority": "P0",
+    "feature": "camera/ae",
+    "test_class": "曝光 / AE",
+    "description": "验证整体曝光水平",
+    "preconditions": "固定光源、构图的标准曝光场景，等待曝光稳定",
+    "steps": [
+      "准备场景：固定光源、构图的标准曝光场景，等待曝光稳定",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/ae/P0/test-ae-average_brightness/test_ae_average_brightness.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "mean_min ≤ 平均亮度 ≤ mean_max",
+    "script_path": "ae/P0/test-ae-average_brightness/test_ae_average_brightness.py",
+    "function": "test_ae_average_brightness"
+  },
+  {
+    "local_case_id": "CAM-AE-002",
+    "title": "CAM-AE-002 欠曝比例",
+    "priority": "P0",
+    "feature": "camera/ae",
+    "test_class": "曝光 / AE",
+    "description": "判断暗部是否存在明显欠曝",
+    "preconditions": "固定光源、构图的标准曝光场景，等待曝光稳定",
+    "steps": [
+      "准备场景：固定光源、构图的标准曝光场景，等待曝光稳定",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/ae/P0/test-ae-underexposure_ratio/test_ae_underexposure_ratio.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "Y≤10 像素占比 ≤ under_max",
+    "script_path": "ae/P0/test-ae-underexposure_ratio/test_ae_underexposure_ratio.py",
+    "function": "test_ae_underexposure_ratio"
+  },
+  {
+    "local_case_id": "CAM-AE-003",
+    "title": "CAM-AE-003 过曝比例",
+    "priority": "P0",
+    "feature": "camera/ae",
+    "test_class": "曝光 / AE",
+    "description": "判断高光区域是否存在明显截断",
+    "preconditions": "固定光源、构图的标准曝光场景，等待曝光稳定",
+    "steps": [
+      "准备场景：固定光源、构图的标准曝光场景，等待曝光稳定",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/ae/P0/test-ae-overexposure_ratio/test_ae_overexposure_ratio.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "Y≥245 像素占比 ≤ over_max",
+    "script_path": "ae/P0/test-ae-overexposure_ratio/test_ae_overexposure_ratio.py",
+    "function": "test_ae_overexposure_ratio"
+  },
+  {
+    "local_case_id": "CAM-AE-005",
+    "title": "CAM-AE-005 亮度直方图分位数",
+    "priority": "P1",
+    "feature": "camera/ae",
+    "test_class": "曝光 / AE",
+    "description": "识别平均亮度正常但暗部或高光分布异常的图像",
+    "preconditions": "固定光源、构图的标准曝光场景，等待曝光稳定",
+    "steps": [
+      "准备场景：固定光源、构图的标准曝光场景，等待曝光稳定",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/ae/P1/test-ae-histogram_percentile/test_ae_histogram_percentile.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "P1≥5、P5≥15、P50≥60、P95≤240、P99≤250",
+    "script_path": "ae/P1/test-ae-histogram_percentile/test_ae_histogram_percentile.py",
+    "function": "test_ae_histogram_percentile"
+  },
+  {
+    "local_case_id": "CAM-AE-006",
+    "title": "CAM-AE-006 亮度中位数",
+    "priority": "P1",
+    "feature": "camera/ae",
+    "test_class": "曝光 / AE",
+    "description": "减少少量极端像素对整体曝光判断的影响",
+    "preconditions": "固定光源、构图的标准曝光场景，等待曝光稳定",
+    "steps": [
+      "准备场景：固定光源、构图的标准曝光场景，等待曝光稳定",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/ae/P1/test-ae-median_brightness/test_ae_median_brightness.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "median_min ≤ 亮度中位数 ≤ median_max",
+    "script_path": "ae/P1/test-ae-median_brightness/test_ae_median_brightness.py",
+    "function": "test_ae_median_brightness"
+  },
+  {
+    "local_case_id": "CAM-AE-007",
+    "title": "CAM-AE-007 有效动态范围",
+    "priority": "P1",
+    "feature": "camera/ae",
+    "test_class": "曝光 / AE",
+    "description": "检查P5到P95的有效亮度范围",
+    "preconditions": "固定光源、构图的标准曝光场景，等待曝光稳定",
+    "steps": [
+      "准备场景：固定光源、构图的标准曝光场景，等待曝光稳定",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/ae/P1/test-ae-effective_dynamic_range/test_ae_effective_dynamic_range.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "dynamic_range_min ≤ P95-P5 ≤ dynamic_range_max",
+    "script_path": "ae/P1/test-ae-effective_dynamic_range/test_ae_effective_dynamic_range.py",
+    "function": "test_ae_effective_dynamic_range"
+  },
+  {
+    "local_case_id": "CAM-AE-008",
+    "title": "CAM-AE-008 图像对比度",
+    "priority": "P1",
+    "feature": "camera/ae",
+    "test_class": "曝光 / AE",
+    "description": "检查全图亮度RMS对比度",
+    "preconditions": "固定光源、构图的标准曝光场景，等待曝光稳定",
+    "steps": [
+      "准备场景：固定光源、构图的标准曝光场景，等待曝光稳定",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/ae/P1/test-ae-image_contrast/test_ae_image_contrast.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "contrast_min ≤ RMS contrast ≤ contrast_max",
+    "script_path": "ae/P1/test-ae-image_contrast/test_ae_image_contrast.py",
+    "function": "test_ae_image_contrast"
+  },
+  {
+    "local_case_id": "CAM-AE-009",
+    "title": "CAM-AE-009 直方图熵",
+    "priority": "P1",
+    "feature": "camera/ae",
+    "test_class": "曝光 / AE",
+    "description": "检查亮度分布的信息量和异常塌缩",
+    "preconditions": "固定光源、构图的标准曝光场景，等待曝光稳定",
+    "steps": [
+      "准备场景：固定光源、构图的标准曝光场景，等待曝光稳定",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/ae/P1/test-ae-histogram_entropy/test_ae_histogram_entropy.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "entropy_min ≤ 亮度直方图熵 ≤ entropy_max",
+    "script_path": "ae/P1/test-ae-histogram_entropy/test_ae_histogram_entropy.py",
+    "function": "test_ae_histogram_entropy"
+  },
+  {
+    "local_case_id": "CAM-SHP-001",
+    "title": "CAM-SHP-001 全局清晰度",
+    "priority": "P0",
+    "feature": "camera/sharpness",
+    "test_class": "清晰度 / Sharpness",
+    "description": "快速判断失焦、抖动、整体模糊",
+    "preconditions": "固定光源、距离、分辨率；中心和四角包含相同重复纹理图卡",
+    "steps": [
+      "准备场景：固定光源、距离、分辨率；中心和四角包含相同重复纹理图卡",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/sharpness/P0/test-sharpness-global_sharpness/test_sharpness_global_sharpness.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "全局 Laplacian 方差 ≥ sharpness_min；不是MTF",
+    "script_path": "sharpness/P0/test-sharpness-global_sharpness/test_sharpness_global_sharpness.py",
+    "function": "test_sharpness_global_sharpness"
+  },
+  {
+    "local_case_id": "CAM-SHP-002",
+    "title": "CAM-SHP-002 中心区域清晰度",
+    "priority": "P0",
+    "feature": "camera/sharpness",
+    "test_class": "清晰度 / Sharpness",
+    "description": "验证镜头中心成像质量",
+    "preconditions": "固定光源、距离、分辨率；中心和四角包含相同重复纹理图卡",
+    "steps": [
+      "准备场景：固定光源、距离、分辨率；中心和四角包含相同重复纹理图卡",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/sharpness/P0/test-sharpness-center_sharpness/test_sharpness_center_sharpness.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "中心25%宽高ROI清晰度 ≥ sharpness_min",
+    "script_path": "sharpness/P0/test-sharpness-center_sharpness/test_sharpness_center_sharpness.py",
+    "function": "test_sharpness_center_sharpness"
+  },
+  {
+    "local_case_id": "CAM-SHP-003",
+    "title": "CAM-SHP-003 四角区域清晰度",
+    "priority": "P0",
+    "feature": "camera/sharpness",
+    "test_class": "清晰度 / Sharpness",
+    "description": "判断边缘成像和局部异常",
+    "preconditions": "固定光源、距离、分辨率；中心和四角包含相同重复纹理图卡",
+    "steps": [
+      "准备场景：固定光源、距离、分辨率；中心和四角包含相同重复纹理图卡",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/sharpness/P0/test-sharpness-corner_sharpness/test_sharpness_corner_sharpness.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "四角25%宽高ROI的清晰度分别 ≥ sharpness_min",
+    "script_path": "sharpness/P0/test-sharpness-corner_sharpness/test_sharpness_corner_sharpness.py",
+    "function": "test_sharpness_corner_sharpness"
+  },
+  {
+    "local_case_id": "CAM-SHP-004",
+    "title": "CAM-SHP-004 中心/四角清晰度一致性",
+    "priority": "P0",
+    "feature": "camera/sharpness",
+    "test_class": "清晰度 / Sharpness",
+    "description": "辅助发现镜头倾斜、AA、组装问题",
+    "preconditions": "固定光源、距离、分辨率；中心和四角包含相同重复纹理图卡",
+    "steps": [
+      "准备场景：固定光源、距离、分辨率；中心和四角包含相同重复纹理图卡",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/sharpness/P0/test-sharpness-center_corner_consistency/test_sharpness_center_corner_consistency.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "五区清晰度最小/最大 ≥ sharpness_ratio_min，且各区清晰度达标",
+    "script_path": "sharpness/P0/test-sharpness-center_corner_consistency/test_sharpness_center_corner_consistency.py",
+    "function": "test_sharpness_center_corner_consistency"
+  },
+  {
+    "local_case_id": "CAM-SHP-005",
+    "title": "CAM-SHP-005 3×3清晰度热力图",
+    "priority": "P1",
+    "feature": "camera/sharpness",
+    "test_class": "清晰度 / Sharpness",
+    "description": "发现局部清晰度下降和空间一致性异常",
+    "preconditions": "固定光源、距离、分辨率；中心和四角包含相同重复纹理图卡",
+    "steps": [
+      "准备场景：固定光源、距离、分辨率；中心和四角包含相同重复纹理图卡",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/sharpness/P1/test-sharpness-roi_3x3_heatmap/test_sharpness_roi_3x3_heatmap.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "3×3各ROI清晰度 ≥ sharpness_min，且最小/最大 ≥ sharpness_ratio_min",
+    "script_path": "sharpness/P1/test-sharpness-roi_3x3_heatmap/test_sharpness_roi_3x3_heatmap.py",
+    "function": "test_sharpness_roi_3x3_heatmap"
+  },
+  {
+    "local_case_id": "CAM-SHP-006",
+    "title": "CAM-SHP-006 梯度清晰度",
+    "priority": "P1",
+    "feature": "camera/sharpness",
+    "test_class": "清晰度 / Sharpness",
+    "description": "使用Sobel梯度能量补充Laplacian清晰度",
+    "preconditions": "固定光源、距离、分辨率；中心和四角包含相同重复纹理图卡",
+    "steps": [
+      "准备场景：固定光源、距离、分辨率；中心和四角包含相同重复纹理图卡",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/sharpness/P1/test-sharpness-tenengrad/test_sharpness_tenengrad.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "tenengrad ≥ tenengrad_min",
+    "script_path": "sharpness/P1/test-sharpness-tenengrad/test_sharpness_tenengrad.py",
+    "function": "test_sharpness_tenengrad"
+  },
+  {
+    "local_case_id": "CAM-COLOR-001",
+    "title": "CAM-COLOR-001 RGB 通道统计",
+    "priority": "P0",
+    "feature": "camera/awb",
+    "test_class": "白平衡 / AWB & Color",
+    "description": "验证 RGB 通道及颜色输出基础状态",
+    "preconditions": "均匀照明的中性灰卡，等待AWB稳定；不能使用任意彩色场景",
+    "steps": [
+      "准备场景：均匀照明的中性灰卡，等待AWB稳定；不能使用任意彩色场景",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/awb/P0/test-awb-rgb_channel_statistics/test_awb_rgb_channel_statistics.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "RGB均值各在 channel_min..channel_max，另记录通道标准差",
+    "script_path": "awb/P0/test-awb-rgb_channel_statistics/test_awb_rgb_channel_statistics.py",
+    "function": "test_awb_rgb_channel_statistics"
+  },
+  {
+    "local_case_id": "CAM-COLOR-002",
+    "title": "CAM-COLOR-002 明显偏色检测",
+    "priority": "P0",
+    "feature": "camera/awb",
+    "test_class": "白平衡 / AWB & Color",
+    "description": "初步判断 AWB 或 ISP 色彩异常",
+    "preconditions": "均匀照明的中性灰卡，等待AWB稳定；不能使用任意彩色场景",
+    "steps": [
+      "准备场景：均匀照明的中性灰卡，等待AWB稳定；不能使用任意彩色场景",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/awb/P0/test-awb-color_cast/test_awb_color_cast.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "RGB均值极差/三通道均值 ≤ color_cast_max，且各通道非暗场；不是ΔE",
+    "script_path": "awb/P0/test-awb-color_cast/test_awb_color_cast.py",
+    "function": "test_awb_color_cast"
+  },
+  {
+    "local_case_id": "CAM-COLOR-003",
+    "title": "CAM-COLOR-003 灰卡R/G比例",
+    "priority": "P1",
+    "feature": "camera/awb",
+    "test_class": "白平衡 / AWB & Color",
+    "description": "检查中性灰场的红绿通道比例",
+    "preconditions": "均匀照明的中性灰卡，等待AWB稳定；不能使用任意彩色场景",
+    "steps": [
+      "准备场景：均匀照明的中性灰卡，等待AWB稳定；不能使用任意彩色场景",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/awb/P1/test-awb-red_green_ratio/test_awb_red_green_ratio.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "rg_min ≤ R/G ≤ rg_max",
+    "script_path": "awb/P1/test-awb-red_green_ratio/test_awb_red_green_ratio.py",
+    "function": "test_awb_red_green_ratio"
+  },
+  {
+    "local_case_id": "CAM-COLOR-004",
+    "title": "CAM-COLOR-004 灰卡B/G比例",
+    "priority": "P1",
+    "feature": "camera/awb",
+    "test_class": "白平衡 / AWB & Color",
+    "description": "检查中性灰场的蓝绿通道比例",
+    "preconditions": "均匀照明的中性灰卡，等待AWB稳定；不能使用任意彩色场景",
+    "steps": [
+      "准备场景：均匀照明的中性灰卡，等待AWB稳定；不能使用任意彩色场景",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/awb/P1/test-awb-blue_green_ratio/test_awb_blue_green_ratio.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "bg_min ≤ B/G ≤ bg_max",
+    "script_path": "awb/P1/test-awb-blue_green_ratio/test_awb_blue_green_ratio.py",
+    "function": "test_awb_blue_green_ratio"
+  },
+  {
+    "local_case_id": "CAM-COLOR-005",
+    "title": "CAM-COLOR-005 中性误差",
+    "priority": "P1",
+    "feature": "camera/awb",
+    "test_class": "白平衡 / AWB & Color",
+    "description": "检查中性灰场三通道离散程度",
+    "preconditions": "均匀照明的中性灰卡，等待AWB稳定；不能使用任意彩色场景",
+    "steps": [
+      "准备场景：均匀照明的中性灰卡，等待AWB稳定；不能使用任意彩色场景",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/awb/P1/test-awb-neutral_error/test_awb_neutral_error.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "neutral_error ≤ neutral_error_max",
+    "script_path": "awb/P1/test-awb-neutral_error/test_awb_neutral_error.py",
+    "function": "test_awb_neutral_error"
+  },
+  {
+    "local_case_id": "CAM-SHD-001",
+    "title": "CAM-SHD-001 中心/边缘亮度差",
+    "priority": "P0",
+    "feature": "camera/shading",
+    "test_class": "亮度均匀性 / LSC & Shading",
+    "description": "判断暗角及 LSC 效果",
+    "preconditions": "均匀平场或积分球，锁定曝光；避免照明不均干扰",
+    "steps": [
+      "准备场景：均匀平场或积分球，锁定曝光；避免照明不均干扰",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/shading/P0/test-shading-center_edge_brightness/test_shading_center_edge_brightness.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "中心与各角均值差/中心均值 ≤ center_edge_max，且各区亮度 ≥ mean_min",
+    "script_path": "shading/P0/test-shading-center_edge_brightness/test_shading_center_edge_brightness.py",
+    "function": "test_shading_center_edge_brightness"
+  },
+  {
+    "local_case_id": "CAM-SHD-002",
+    "title": "CAM-SHD-002 四角亮度一致性",
+    "priority": "P0",
+    "feature": "camera/shading",
+    "test_class": "亮度均匀性 / LSC & Shading",
+    "description": "判断局部 Shading 或装配异常",
+    "preconditions": "均匀平场或积分球，锁定曝光；避免照明不均干扰",
+    "steps": [
+      "准备场景：均匀平场或积分球，锁定曝光；避免照明不均干扰",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/shading/P0/test-shading-corner_brightness_consistency/test_shading_corner_brightness_consistency.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "四角亮度极差/四角均值 ≤ corner_delta_max，且各区亮度 ≥ mean_min",
+    "script_path": "shading/P0/test-shading-corner_brightness_consistency/test_shading_corner_brightness_consistency.py",
+    "function": "test_shading_corner_brightness_consistency"
+  },
+  {
+    "local_case_id": "CAM-DEFECT-004",
+    "title": "CAM-DEFECT-004 大面积异常色块/花屏检测",
+    "priority": "P0",
+    "feature": "camera/defect",
+    "test_class": "异常检测 / Defect",
+    "description": "发现 ISP、Sensor 或数据传输异常",
+    "preconditions": "中性均匀场，仅针对大面积局部色度异常；非通用花屏或坏点检测",
+    "steps": [
+      "准备场景：中性均匀场，仅针对大面积局部色度异常；非通用花屏或坏点检测",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/defect/P0/test-defect-large_color_block/test_defect_large_color_block.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "8×8分块相对于全图中位色度的最大块均值 ≤ chroma_tile_max",
+    "script_path": "defect/P0/test-defect-large_color_block/test_defect_large_color_block.py",
+    "function": "test_defect_large_color_block"
+  },
+  {
+    "local_case_id": "CAM-IMG-006",
+    "title": "CAM-IMG-006 重复帧/冻结",
+    "priority": "P1",
+    "feature": "camera/output",
+    "test_class": "基础图像 / Output",
+    "description": "检测连续输出是否冻结或重复",
+    "preconditions": "正常照明、有纹理的实际输出图片，支持8-bit JPEG/PNG",
+    "steps": [
+      "准备场景：正常照明、有纹理的实际输出图片，支持8-bit JPEG/PNG",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/output/P1/test-output-duplicate_frame/test_output_duplicate_frame.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "需要至少两帧目录；重复相似度 ≤ duplicate_similarity_max，否则 N/A/失败",
+    "script_path": "output/P1/test-output-duplicate_frame/test_output_duplicate_frame.py",
+    "function": "test_output_duplicate_frame"
+  },
+  {
+    "local_case_id": "CAM-IMG-007",
+    "title": "CAM-IMG-007 JPEG异常压缩",
+    "priority": "P1",
+    "feature": "camera/output",
+    "test_class": "基础图像 / Output",
+    "description": "检测JPEG 8×8块效应代理",
+    "preconditions": "正常照明、有纹理的实际输出图片，支持8-bit JPEG/PNG",
+    "steps": [
+      "准备场景：正常照明、有纹理的实际输出图片，支持8-bit JPEG/PNG",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/output/P1/test-output-jpeg_compression/test_output_jpeg_compression.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "JPEG块效应 ≤ jpeg_blockiness_max；非JPEG输入返回 N/A/失败",
+    "script_path": "output/P1/test-output-jpeg_compression/test_output_jpeg_compression.py",
+    "function": "test_output_jpeg_compression"
+  },
+  {
+    "local_case_id": "CAM-SHP-007",
+    "title": "CAM-SHP-007 MTF50基础代理",
+    "priority": "P1",
+    "feature": "camera/sharpness",
+    "test_class": "清晰度 / Sharpness",
+    "description": "用边缘梯度频率代理评估MTF50",
+    "preconditions": "固定光源、距离、分辨率；中心和四角包含相同重复纹理图卡",
+    "steps": [
+      "准备场景：固定光源、距离、分辨率；中心和四角包含相同重复纹理图卡",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/sharpness/P1/test-sharpness-mtf50/test_sharpness_mtf50.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "纹理/边缘输入的 MTF50 代理 ≥ mtf50_min；不替代ISO12233标定",
+    "script_path": "sharpness/P1/test-sharpness-mtf50/test_sharpness_mtf50.py",
+    "function": "test_sharpness_mtf50"
+  },
+  {
+    "local_case_id": "CAM-SHP-008",
+    "title": "CAM-SHP-008 MTF20基础代理",
+    "priority": "P1",
+    "feature": "camera/sharpness",
+    "test_class": "清晰度 / Sharpness",
+    "description": "用边缘梯度频率代理评估MTF20",
+    "preconditions": "固定光源、距离、分辨率；中心和四角包含相同重复纹理图卡",
+    "steps": [
+      "准备场景：固定光源、距离、分辨率；中心和四角包含相同重复纹理图卡",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/sharpness/P1/test-sharpness-mtf20/test_sharpness_mtf20.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "纹理/边缘输入的 MTF20 代理 ≥ mtf20_min；不替代ISO12233标定",
+    "script_path": "sharpness/P1/test-sharpness-mtf20/test_sharpness_mtf20.py",
+    "function": "test_sharpness_mtf20"
+  },
+  {
+    "local_case_id": "CAM-SHP-009",
+    "title": "CAM-SHP-009 角落/中心MTF比",
+    "priority": "P1",
+    "feature": "camera/sharpness",
+    "test_class": "清晰度 / Sharpness",
+    "description": "比较中心与四角清晰度代理",
+    "preconditions": "固定光源、距离、分辨率；中心和四角包含相同重复纹理图卡",
+    "steps": [
+      "准备场景：固定光源、距离、分辨率；中心和四角包含相同重复纹理图卡",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/sharpness/P1/test-sharpness-corner_center_mtf_ratio/test_sharpness_corner_center_mtf_ratio.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "角落/中心代理最小比 ≥ corner_center_mtf_ratio_min",
+    "script_path": "sharpness/P1/test-sharpness-corner_center_mtf_ratio/test_sharpness_corner_center_mtf_ratio.py",
+    "function": "test_sharpness_corner_center_mtf_ratio"
+  },
+  {
+    "local_case_id": "CAM-SHP-010",
+    "title": "CAM-SHP-010 西门子星MTF50/MTF20试验",
+    "priority": "P1",
+    "feature": "camera/sharpness",
+    "test_class": "清晰度 / Sharpness",
+    "description": "先定位图卡平面并透视矫正，再从6颗西门子星（中间2颗、四角4颗）估计MTF50主值并输出MTF20辅助值",
+    "preconditions": "固定光源、距离、分辨率；中心和四角包含相同重复纹理图卡",
+    "steps": [
+      "准备场景：固定光源、距离、分辨率；中心和四角包含相同重复纹理图卡",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/sharpness/P1/test-sharpness-siemens_star_mtf/test_sharpness_siemens_star_mtf.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "6颗配置的西门子星全部成功输出 MTF50；单位为 cycles/pixel，MTF20作为辅助值，产品阈值待标定",
+    "script_path": "sharpness/P1/test-sharpness-siemens_star_mtf/test_sharpness_siemens_star_mtf.py",
+    "function": "test_sharpness_siemens_star_mtf"
+  },
+  {
+    "local_case_id": "CAM-SHP-011",
+    "title": "CAM-SHP-011 斜边SFR整体清晰度",
+    "priority": "P1",
+    "feature": "camera/sharpness",
+    "test_class": "清晰度 / Sharpness",
+    "description": "先定位图卡并矫正，再锁定3x3图卡的9个黑白斜边方块，在原图像素上用斜边法计算整体SFR、MTF50/MTF20",
+    "preconditions": "固定光源、距离、分辨率；中心和四角包含相同重复纹理图卡",
+    "steps": [
+      "准备场景：固定光源、距离、分辨率；中心和四角包含相同重复纹理图卡",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/sharpness/P1/test-sharpness-slanted_edge_sfr/test_sharpness_slanted_edge_sfr.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "9个斜边方块必须全部锁定（否则立即失败且不计算），至少7条斜边得到有效MTF50，整体MTF50中位数≥0.3 cycles/pixel",
+    "script_path": "sharpness/P1/test-sharpness-slanted_edge_sfr/test_sharpness_slanted_edge_sfr.py",
+    "function": "test_sharpness_slanted_edge_sfr"
+  },
+  {
+    "local_case_id": "CAM-COLOR-006",
+    "title": "CAM-COLOR-006 ColorChecker色差基础代理",
+    "priority": "P1",
+    "feature": "camera/awb",
+    "test_class": "白平衡 / AWB & Color",
+    "description": "以RGB通道离散度代理中性色差",
+    "preconditions": "均匀照明的中性灰卡，等待AWB稳定；不能使用任意彩色场景",
+    "steps": [
+      "准备场景：均匀照明的中性灰卡，等待AWB稳定；不能使用任意彩色场景",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/awb/P1/test-awb-colorchecker_delta_e/test_awb_colorchecker_delta_e.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "中性色差代理 ≤ delta_e_max；未定位标准ColorChecker时为基础代理",
+    "script_path": "awb/P1/test-awb-colorchecker_delta_e/test_awb_colorchecker_delta_e.py",
+    "function": "test_awb_colorchecker_delta_e"
+  },
+  {
+    "local_case_id": "CAM-SHD-003",
+    "title": "CAM-SHD-003 9×9亮度均匀性",
+    "priority": "P1",
+    "feature": "camera/shading",
+    "test_class": "亮度均匀性 / LSC & Shading",
+    "description": "输出9×9亮度热力图和范围",
+    "preconditions": "均匀平场或积分球，锁定曝光；避免照明不均干扰",
+    "steps": [
+      "准备场景：均匀平场或积分球，锁定曝光；避免照明不均干扰",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/shading/P1/test-shading-luma_9x9_heatmap/test_shading_luma_9x9_heatmap.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "9×9亮度范围 ≤ luma_range_max",
+    "script_path": "shading/P1/test-shading-luma_9x9_heatmap/test_shading_luma_9x9_heatmap.py",
+    "function": "test_shading_luma_9x9_heatmap"
+  },
+  {
+    "local_case_id": "CAM-SHD-004",
+    "title": "CAM-SHD-004 9×9颜色均匀性",
+    "priority": "P1",
+    "feature": "camera/shading",
+    "test_class": "亮度均匀性 / LSC & Shading",
+    "description": "输出9×9 R/G、B/G热力图和范围",
+    "preconditions": "均匀平场或积分球，锁定曝光；避免照明不均干扰",
+    "steps": [
+      "准备场景：均匀平场或积分球，锁定曝光；避免照明不均干扰",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/shading/P1/test-shading-color_9x9_heatmap/test_shading_color_9x9_heatmap.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "R/G、B/G范围分别 ≤ rg_range_max、bg_range_max",
+    "script_path": "shading/P1/test-shading-color_9x9_heatmap/test_shading_color_9x9_heatmap.py",
+    "function": "test_shading_color_9x9_heatmap"
+  },
+  {
+    "local_case_id": "CAM-NOISE-001",
+    "title": "CAM-NOISE-001 亮度噪声",
+    "priority": "P1",
+    "feature": "camera/noise",
+    "test_class": "噪声与信噪比 / Noise & SNR",
+    "description": "测量灰场亮度标准差",
+    "preconditions": "固定照明、灰场或暗场；噪声结果依赖曝光、增益和温度",
+    "steps": [
+      "准备场景：固定照明、灰场或暗场；噪声结果依赖曝光、增益和温度",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/noise/P1/test-noise-luma_noise/test_noise_luma_noise.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "亮度噪声 ≤ luma_noise_max",
+    "script_path": "noise/P1/test-noise-luma_noise/test_noise_luma_noise.py",
+    "function": "test_noise_luma_noise"
+  },
+  {
+    "local_case_id": "CAM-NOISE-002",
+    "title": "CAM-NOISE-002 色度噪声",
+    "priority": "P1",
+    "feature": "camera/noise",
+    "test_class": "噪声与信噪比 / Noise & SNR",
+    "description": "测量Cb/Cr色度标准差",
+    "preconditions": "固定照明、灰场或暗场；噪声结果依赖曝光、增益和温度",
+    "steps": [
+      "准备场景：固定照明、灰场或暗场；噪声结果依赖曝光、增益和温度",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/noise/P1/test-noise-chroma_noise/test_noise_chroma_noise.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "色度噪声 ≤ chroma_noise_max",
+    "script_path": "noise/P1/test-noise-chroma_noise/test_noise_chroma_noise.py",
+    "function": "test_noise_chroma_noise"
+  },
+  {
+    "local_case_id": "CAM-NOISE-003",
+    "title": "CAM-NOISE-003 信噪比",
+    "priority": "P1",
+    "feature": "camera/noise",
+    "test_class": "噪声与信噪比 / Noise & SNR",
+    "description": "计算Mean/Std及dB",
+    "preconditions": "固定照明、灰场或暗场；噪声结果依赖曝光、增益和温度",
+    "steps": [
+      "准备场景：固定照明、灰场或暗场；噪声结果依赖曝光、增益和温度",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/noise/P1/test-noise-signal_to_noise_ratio/test_noise_signal_to_noise_ratio.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "SNR ≥ snr_min 或 snr_db ≥ snr_db_min",
+    "script_path": "noise/P1/test-noise-signal_to_noise_ratio/test_noise_signal_to_noise_ratio.py",
+    "function": "test_noise_signal_to_noise_ratio"
+  },
+  {
+    "local_case_id": "CAM-NOISE-004",
+    "title": "CAM-NOISE-004 暗场噪声",
+    "priority": "P1",
+    "feature": "camera/noise",
+    "test_class": "噪声与信噪比 / Noise & SNR",
+    "description": "在暗场中测量黑电平噪声",
+    "preconditions": "固定照明、灰场或暗场；噪声结果依赖曝光、增益和温度",
+    "steps": [
+      "准备场景：固定照明、灰场或暗场；噪声结果依赖曝光、增益和温度",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/noise/P1/test-noise-dark_frame_noise/test_noise_dark_frame_noise.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "暗场平均亮度 ≤ dark_mean_max 且噪声 ≤ dark_noise_max",
+    "script_path": "noise/P1/test-noise-dark_frame_noise/test_noise_dark_frame_noise.py",
+    "function": "test_noise_dark_frame_noise"
+  },
+  {
+    "local_case_id": "CAM-NOISE-005",
+    "title": "CAM-NOISE-005 时域噪声",
+    "priority": "P1",
+    "feature": "camera/noise",
+    "test_class": "噪声与信噪比 / Noise & SNR",
+    "description": "比较连续帧的像素波动",
+    "preconditions": "固定照明、灰场或暗场；噪声结果依赖曝光、增益和温度",
+    "steps": [
+      "准备场景：固定照明、灰场或暗场；噪声结果依赖曝光、增益和温度",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/noise/P1/test-noise-temporal_noise/test_noise_temporal_noise.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "需要至少两帧目录；时域噪声 ≤ temporal_noise_max",
+    "script_path": "noise/P1/test-noise-temporal_noise/test_noise_temporal_noise.py",
+    "function": "test_noise_temporal_noise"
+  },
+  {
+    "local_case_id": "CAM-GEO-001",
+    "title": "CAM-GEO-001 镜头畸变",
+    "priority": "P1",
+    "feature": "camera/geometry",
+    "test_class": "几何 / Geometry",
+    "description": "以边缘半径离散度作基础代理",
+    "preconditions": "综合图网格或直线；基础代理不替代标定级畸变模型",
+    "steps": [
+      "准备场景：综合图网格或直线；基础代理不替代标定级畸变模型",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/geometry/P1/test-geometry-lens_distortion/test_geometry_lens_distortion.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "畸变代理 ≤ distortion_max",
+    "script_path": "geometry/P1/test-geometry-lens_distortion/test_geometry_lens_distortion.py",
+    "function": "test_geometry_lens_distortion"
+  },
+  {
+    "local_case_id": "CAM-GEO-002",
+    "title": "CAM-GEO-002 横向色差LCA",
+    "priority": "P1",
+    "feature": "camera/geometry",
+    "test_class": "几何 / Geometry",
+    "description": "测量通道色差梯度代理",
+    "preconditions": "综合图网格或直线；基础代理不替代标定级畸变模型",
+    "steps": [
+      "准备场景：综合图网格或直线；基础代理不替代标定级畸变模型",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/geometry/P1/test-geometry-lateral_chromatic_aberration/test_geometry_lateral_chromatic_aberration.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "LCA代理 ≤ lca_max",
+    "script_path": "geometry/P1/test-geometry-lateral_chromatic_aberration/test_geometry_lateral_chromatic_aberration.py",
+    "function": "test_geometry_lateral_chromatic_aberration"
+  },
+  {
+    "local_case_id": "CAM-GEO-003",
+    "title": "CAM-GEO-003 光轴中心偏移",
+    "priority": "P1",
+    "feature": "camera/geometry",
+    "test_class": "几何 / Geometry",
+    "description": "从边缘分布估计几何中心偏移",
+    "preconditions": "综合图网格或直线；基础代理不替代标定级畸变模型",
+    "steps": [
+      "准备场景：综合图网格或直线；基础代理不替代标定级畸变模型",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/geometry/P1/test-geometry-optical_center_offset/test_geometry_optical_center_offset.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "中心偏移 ≤ center_offset_max",
+    "script_path": "geometry/P1/test-geometry-optical_center_offset/test_geometry_optical_center_offset.py",
+    "function": "test_geometry_optical_center_offset"
+  },
+  {
+    "local_case_id": "CAM-GEO-004",
+    "title": "CAM-GEO-004 透视误差",
+    "priority": "P1",
+    "feature": "camera/geometry",
+    "test_class": "几何 / Geometry",
+    "description": "比较左右边缘线的垂直偏差",
+    "preconditions": "综合图网格或直线；基础代理不替代标定级畸变模型",
+    "steps": [
+      "准备场景：综合图网格或直线；基础代理不替代标定级畸变模型",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/geometry/P1/test-geometry-perspective_error/test_geometry_perspective_error.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "透视误差 ≤ perspective_max",
+    "script_path": "geometry/P1/test-geometry-perspective_error/test_geometry_perspective_error.py",
+    "function": "test_geometry_perspective_error"
+  },
+  {
+    "local_case_id": "CAM-DEFECT-005",
+    "title": "CAM-DEFECT-005 热点",
+    "priority": "P1",
+    "feature": "camera/defect",
+    "test_class": "异常检测 / Defect",
+    "description": "检测均匀场孤立亮点",
+    "preconditions": "中性均匀场，仅针对大面积局部色度异常；非通用花屏或坏点检测",
+    "steps": [
+      "准备场景：中性均匀场，仅针对大面积局部色度异常；非通用花屏或坏点检测",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/defect/P1/test-defect-hot_pixel/test_defect_hot_pixel.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "热点数量 ≤ hot_pixel_max",
+    "script_path": "defect/P1/test-defect-hot_pixel/test_defect_hot_pixel.py",
+    "function": "test_defect_hot_pixel"
+  },
+  {
+    "local_case_id": "CAM-DEFECT-006",
+    "title": "CAM-DEFECT-006 坏点",
+    "priority": "P1",
+    "feature": "camera/defect",
+    "test_class": "异常检测 / Defect",
+    "description": "检测均匀场孤立暗点",
+    "preconditions": "中性均匀场，仅针对大面积局部色度异常；非通用花屏或坏点检测",
+    "steps": [
+      "准备场景：中性均匀场，仅针对大面积局部色度异常；非通用花屏或坏点检测",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/defect/P1/test-defect-dead_pixel/test_defect_dead_pixel.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "坏点数量 ≤ dead_pixel_max",
+    "script_path": "defect/P1/test-defect-dead_pixel/test_defect_dead_pixel.py",
+    "function": "test_defect_dead_pixel"
+  },
+  {
+    "local_case_id": "CAM-DEFECT-007",
+    "title": "CAM-DEFECT-007 水平条纹",
+    "priority": "P1",
+    "feature": "camera/defect",
+    "test_class": "异常检测 / Defect",
+    "description": "比较逐行亮度周期波动",
+    "preconditions": "中性均匀场，仅针对大面积局部色度异常；非通用花屏或坏点检测",
+    "steps": [
+      "准备场景：中性均匀场，仅针对大面积局部色度异常；非通用花屏或坏点检测",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/defect/P1/test-defect-horizontal_banding/test_defect_horizontal_banding.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "水平条纹代理 ≤ horizontal_banding_max",
+    "script_path": "defect/P1/test-defect-horizontal_banding/test_defect_horizontal_banding.py",
+    "function": "test_defect_horizontal_banding"
+  },
+  {
+    "local_case_id": "CAM-DEFECT-008",
+    "title": "CAM-DEFECT-008 垂直条纹",
+    "priority": "P1",
+    "feature": "camera/defect",
+    "test_class": "异常检测 / Defect",
+    "description": "比较逐列亮度周期波动",
+    "preconditions": "中性均匀场，仅针对大面积局部色度异常；非通用花屏或坏点检测",
+    "steps": [
+      "准备场景：中性均匀场，仅针对大面积局部色度异常；非通用花屏或坏点检测",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/defect/P1/test-defect-vertical_banding/test_defect_vertical_banding.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "垂直条纹代理 ≤ vertical_banding_max",
+    "script_path": "defect/P1/test-defect-vertical_banding/test_defect_vertical_banding.py",
+    "function": "test_defect_vertical_banding"
+  },
+  {
+    "local_case_id": "CAM-DEFECT-009",
+    "title": "CAM-DEFECT-009 帧损坏",
+    "priority": "P1",
+    "feature": "camera/defect",
+    "test_class": "异常检测 / Defect",
+    "description": "检查当前帧尺寸、有限值和可解码性",
+    "preconditions": "中性均匀场，仅针对大面积局部色度异常；非通用花屏或坏点检测",
+    "steps": [
+      "准备场景：中性均匀场，仅针对大面积局部色度异常；非通用花屏或坏点检测",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/defect/P1/test-defect-frame_corruption/test_defect_frame_corruption.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "图像全部有限且尺寸符合 expected_size",
+    "script_path": "defect/P1/test-defect-frame_corruption/test_defect_frame_corruption.py",
+    "function": "test_defect_frame_corruption"
+  },
+  {
+    "local_case_id": "CAM-DEFECT-010",
+    "title": "CAM-DEFECT-010 冻结/重复帧",
+    "priority": "P1",
+    "feature": "camera/defect",
+    "test_class": "异常检测 / Defect",
+    "description": "检测连续帧是否重复",
+    "preconditions": "中性均匀场，仅针对大面积局部色度异常；非通用花屏或坏点检测",
+    "steps": [
+      "准备场景：中性均匀场，仅针对大面积局部色度异常；非通用花屏或坏点检测",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/defect/P1/test-defect-duplicate_frame/test_defect_duplicate_frame.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "需要至少两帧目录；重复相似度 ≤ duplicate_similarity_max，否则 N/A/失败",
+    "script_path": "defect/P1/test-defect-duplicate_frame/test_defect_duplicate_frame.py",
+    "function": "test_defect_duplicate_frame"
+  },
+  {
+    "local_case_id": "CAM-UW-001",
+    "title": "CAM-UW-001 水下清晰度变化",
+    "priority": "P1",
+    "feature": "camera/underwater",
+    "test_class": "水下画质 / Underwater IQ",
+    "description": "比较空气与水下清晰度代理",
+    "preconditions": "同一综合卡的空气/水下配对输入；缺少配对输入时不判通过",
+    "steps": [
+      "准备场景：同一综合卡的空气/水下配对输入；缺少配对输入时不判通过",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/underwater/P1/test-underwater-sharpness_change/test_underwater_sharpness_change.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "需要空气基线；水下/空气清晰度比 ≥ underwater_ratio_min",
+    "script_path": "underwater/P1/test-underwater-sharpness_change/test_underwater_sharpness_change.py",
+    "function": "test_underwater_sharpness_change"
+  },
+  {
+    "local_case_id": "CAM-UW-002",
+    "title": "CAM-UW-002 水下视场角/畸变",
+    "priority": "P1",
+    "feature": "camera/underwater",
+    "test_class": "水下画质 / Underwater IQ",
+    "description": "比较输入几何代理变化",
+    "preconditions": "同一综合卡的空气/水下配对输入；缺少配对输入时不判通过",
+    "steps": [
+      "准备场景：同一综合卡的空气/水下配对输入；缺少配对输入时不判通过",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/underwater/P1/test-underwater-fov_distortion/test_underwater_fov_distortion.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "需要空气基线且畸变变化 ≤ fov_change_max",
+    "script_path": "underwater/P1/test-underwater-fov_distortion/test_underwater_fov_distortion.py",
+    "function": "test_underwater_fov_distortion"
+  },
+  {
+    "local_case_id": "CAM-UW-003",
+    "title": "CAM-UW-003 水下白平衡",
+    "priority": "P1",
+    "feature": "camera/underwater",
+    "test_class": "水下画质 / Underwater IQ",
+    "description": "比较水下RGB通道平衡",
+    "preconditions": "同一综合卡的空气/水下配对输入；缺少配对输入时不判通过",
+    "steps": [
+      "准备场景：同一综合卡的空气/水下配对输入；缺少配对输入时不判通过",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/underwater/P1/test-underwater-awb/test_underwater_awb.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "水下R/G、B/G均在配置范围",
+    "script_path": "underwater/P1/test-underwater-awb/test_underwater_awb.py",
+    "function": "test_underwater_awb"
+  },
+  {
+    "local_case_id": "CAM-UW-004",
+    "title": "CAM-UW-004 水下对比度损失",
+    "priority": "P1",
+    "feature": "camera/underwater",
+    "test_class": "水下画质 / Underwater IQ",
+    "description": "比较水下与空气RMS对比度",
+    "preconditions": "同一综合卡的空气/水下配对输入；缺少配对输入时不判通过",
+    "steps": [
+      "准备场景：同一综合卡的空气/水下配对输入；缺少配对输入时不判通过",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/underwater/P1/test-underwater-contrast_loss/test_underwater_contrast_loss.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "需要空气基线且对比度损失 ≤ contrast_loss_max",
+    "script_path": "underwater/P1/test-underwater-contrast_loss/test_underwater_contrast_loss.py",
+    "function": "test_underwater_contrast_loss"
+  },
+  {
+    "local_case_id": "CAM-UW-005",
+    "title": "CAM-UW-005 水下散射颗粒",
+    "priority": "P1",
+    "feature": "camera/underwater",
+    "test_class": "水下画质 / Underwater IQ",
+    "description": "检测亮度局部离群颗粒代理",
+    "preconditions": "同一综合卡的空气/水下配对输入；缺少配对输入时不判通过",
+    "steps": [
+      "准备场景：同一综合卡的空气/水下配对输入；缺少配对输入时不判通过",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/underwater/P1/test-underwater-backscatter/test_underwater_backscatter.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "散射亮点数量 ≤ backscatter_max",
+    "script_path": "underwater/P1/test-underwater-backscatter/test_underwater_backscatter.py",
+    "function": "test_underwater_backscatter"
+  },
+  {
+    "local_case_id": "CAM-REG-001",
+    "title": "CAM-REG-001 固件版本指标对比",
+    "priority": "P1",
+    "feature": "camera/regression",
+    "test_class": "版本回归 / Regression",
+    "description": "与配置基线比较综合指标",
+    "preconditions": "固定输入和版本基线；缺少基线时明确返回 N/A",
+    "steps": [
+      "准备场景：固定输入和版本基线；缺少基线时明确返回 N/A",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/regression/P1/test-regression-firmware_metrics/test_regression_firmware_metrics.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "必须提供基线文件；变化率不超过 regression_delta_max",
+    "script_path": "regression/P1/test-regression-firmware_metrics/test_regression_firmware_metrics.py",
+    "function": "test_regression_firmware_metrics"
+  },
+  {
+    "local_case_id": "CAM-REG-002",
+    "title": "CAM-REG-002 ISP版本指标对比",
+    "priority": "P1",
+    "feature": "camera/regression",
+    "test_class": "版本回归 / Regression",
+    "description": "与配置基线比较图像指标",
+    "preconditions": "固定输入和版本基线；缺少基线时明确返回 N/A",
+    "steps": [
+      "准备场景：固定输入和版本基线；缺少基线时明确返回 N/A",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/regression/P1/test-regression-isp_metrics/test_regression_isp_metrics.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "必须提供基线文件；变化率不超过 regression_delta_max",
+    "script_path": "regression/P1/test-regression-isp_metrics/test_regression_isp_metrics.py",
+    "function": "test_regression_isp_metrics"
+  },
+  {
+    "local_case_id": "CAM-REG-003",
+    "title": "CAM-REG-003 模组Golden Sample对比",
+    "priority": "P1",
+    "feature": "camera/regression",
+    "test_class": "版本回归 / Regression",
+    "description": "与Golden Sample图像比较",
+    "preconditions": "固定输入和版本基线；缺少基线时明确返回 N/A",
+    "steps": [
+      "准备场景：固定输入和版本基线；缺少基线时明确返回 N/A",
+      "配置 CAMERA_CONFIG 中该类别图片和产品验收阈值",
+      "在 Runner 根目录运行 python -m autotest_runner run testcases/camera/regression/P1/test-regression-golden_sample/test_regression_golden_sample.py",
+      "查看 HTML 报告和 reports/camera 的指标证据，按配置阈值判定"
+    ],
+    "expected_result": "必须提供基线文件；相似度 ≥ golden_similarity_min",
+    "script_path": "regression/P1/test-regression-golden_sample/test_regression_golden_sample.py",
+    "function": "test_regression_golden_sample"
+  }
+]

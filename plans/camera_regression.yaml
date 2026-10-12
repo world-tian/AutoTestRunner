@@ -1,0 +1,12 @@
+name: 相机版本回归专项
+description: 覆盖固件、ISP 和 Golden Sample 版本回归
+targets:
+  - testcases/camera/regression/P1
+cases:
+  - CAM-REG-001
+  - CAM-REG-002
+  - CAM-REG-003
+execution:
+  continue_on_fail: true
+  cleanup_between_cases: true
+  stop_on_collection_error: true

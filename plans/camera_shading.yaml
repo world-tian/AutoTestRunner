@@ -1,0 +1,17 @@
+name: 相机 LSC / Shading 专项
+description: 使用均匀灰场验证中心边缘、四角和9x9亮度/颜色均匀性
+# 默认使用均匀灰场；命令行 --picture 可以覆盖该输入。
+env:
+  CAMERA_PICTURE: testcases/camera/images/valid_uniform_gray.png
+targets:
+  - testcases/camera/shading/P0
+  - testcases/camera/shading/P1
+cases:
+  - CAM-SHD-001
+  - CAM-SHD-002
+  - CAM-SHD-003
+  - CAM-SHD-004
+execution:
+  continue_on_fail: true
+  cleanup_between_cases: true
+  stop_on_collection_error: true

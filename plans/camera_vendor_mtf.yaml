@@ -1,0 +1,28 @@
+name: 厂商镜头 - 西门子星 MTF 实拍试验
+description: 用手机或设备实拍旧式 ISO/CIPA 图卡中的西门子星输出 MTF50/MTF20；不是 ISO 12233 eSFR 正式认证流程
+env:
+  # MTF50 判定阈值，单位 cycles/pixel；修改这里即可调整本专项筛查门槛。
+  SFR_MTF50_MIN_CY_PX: 0.300
+  # x/y/radius 均属于“图卡矫正平面”的归一化坐标，不是原始照片坐标。
+  # Runner 会先定位亮色图卡平面并做透视矫正，再按这些坐标截取西门子星。
+  SFR_STAR_REGIONS: >-
+    [{"name":"left_mid","x":0.362,"y":0.394,"radius":0.060,"cycles":36},
+     {"name":"right_bottom","x":0.667,"y":0.688,"radius":0.060,"cycles":36},
+     {"name":"top_left","x":0.0728,"y":0.113,"radius":0.060,"cycles":36},
+     {"name":"top_right","x":0.9306,"y":0.112,"radius":0.060,"cycles":36},
+     {"name":"bottom_left","x":0.0722,"y":0.895,"radius":0.060,"cycles":36},
+     {"name":"bottom_right","x":0.9311,"y":0.894,"radius":0.060,"cycles":36}]
+input:
+  require_picture: true
+targets:
+  - testcases/camera/sharpness/P1
+cases:
+  - CAM-SHP-010
+execution:
+  continue_on_fail: true
+  cleanup_between_cases: true
+  stop_on_collection_error: true
+artifacts:
+  # 将 camera_case 生成的证据 JSON、MTF 曲线、定位图、矫正图和 ROI 截图复制到执行 ZIP。
+  include_camera_evidence: true
+  zip_logs: true

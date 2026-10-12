@@ -1,0 +1,19 @@
+name: 镜头清晰度 - 斜边 SFR 整体评估
+description: 用整幅实拍的 3x3 斜边图卡，锁定 9 个黑白斜边方块，在原图像素上计算整体 SFR/MTF50；不是 ISO 12233 eSFR 认证流程
+env:
+  # 整体 MTF50 中位数下限，单位 cycles/pixel（原图像素）；需求方指定为 0.3。
+  SFR_EDGE_MTF50_MIN_CY_PX: 0.3
+input:
+  require_picture: true
+targets:
+  - testcases/camera/sharpness/P1
+cases:
+  - CAM-SHP-011
+execution:
+  continue_on_fail: true
+  cleanup_between_cases: true
+  stop_on_collection_error: true
+artifacts:
+  # 将证据 JSON、定位/矫正图、斜边锁定图、每个目标的原图裁剪、SFR/ESF 曲线复制到执行 ZIP。
+  include_camera_evidence: true
+  zip_logs: true

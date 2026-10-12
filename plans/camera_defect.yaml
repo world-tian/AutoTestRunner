@@ -1,0 +1,16 @@
+name: 相机异常检测专项
+description: 覆盖异常色块、坏点、热点、条纹、损坏帧和冻结帧
+targets:
+  - testcases/camera/defect
+cases:
+  - CAM-DEFECT-004
+  - CAM-DEFECT-005
+  - CAM-DEFECT-006
+  - CAM-DEFECT-007
+  - CAM-DEFECT-008
+  - CAM-DEFECT-009
+  - CAM-DEFECT-010
+execution:
+  continue_on_fail: true
+  cleanup_between_cases: true
+  stop_on_collection_error: true

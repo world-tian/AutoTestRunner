@@ -1,0 +1,14 @@
+name: 相机噪声专项
+description: 覆盖亮度、色度、信噪比、暗场和时域噪声
+targets:
+  - testcases/camera/noise/P1
+cases:
+  - CAM-NOISE-001
+  - CAM-NOISE-002
+  - CAM-NOISE-003
+  - CAM-NOISE-004
+  - CAM-NOISE-005
+execution:
+  continue_on_fail: true
+  cleanup_between_cases: true
+  stop_on_collection_error: true

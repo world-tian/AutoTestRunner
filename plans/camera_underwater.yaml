@@ -1,0 +1,14 @@
+name: 相机水下画质专项
+description: 覆盖水下清晰度、视场畸变、白平衡、对比度和散射
+targets:
+  - testcases/camera/underwater/P1
+cases:
+  - CAM-UW-001
+  - CAM-UW-002
+  - CAM-UW-003
+  - CAM-UW-004
+  - CAM-UW-005
+execution:
+  continue_on_fail: true
+  cleanup_between_cases: true
+  stop_on_collection_error: true

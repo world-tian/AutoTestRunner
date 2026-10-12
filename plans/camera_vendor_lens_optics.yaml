@@ -1,0 +1,27 @@
+name: 厂商镜头标定 - Lens Optics
+description: 用包含斜边和标定网格的设备实拍综合靶图联合筛查清晰度与几何代理；两类指标独立判定，不能替代正式SFR和标定结果
+env:
+  # 默认仅用于流程验证；正式厂商验收请用 --picture 覆盖为实拍综合靶图。
+  CAMERA_PICTURE: testcases/camera/images/reference/vendor_combined_screening_reference.png
+targets:
+  - testcases/camera/sharpness/P0
+  - testcases/camera/sharpness/P1
+  - testcases/camera/geometry/P1
+cases:
+  - CAM-SHP-001
+  - CAM-SHP-002
+  - CAM-SHP-003
+  - CAM-SHP-004
+  - CAM-SHP-005
+  - CAM-SHP-006
+  - CAM-SHP-007
+  - CAM-SHP-008
+  - CAM-SHP-009
+  - CAM-GEO-001
+  - CAM-GEO-002
+  - CAM-GEO-003
+  - CAM-GEO-004
+execution:
+  continue_on_fail: true
+  cleanup_between_cases: true
+  stop_on_collection_error: true

@@ -1,6 +1,7 @@
 import json
 import logging
 import os
+import shutil
 import time
 import zipfile
 from datetime import datetime
@@ -75,7 +76,7 @@ class RuntimeManager:
             "started_at": datetime.utcnow().isoformat(),
         }
 
-    def after_case(self, case_state, status, error_message=None):
+    def after_case(self, case_state, status, error_message=None, camera_evidence=None):
         nodeid = case_state.get("nodeid", self.current_case)
         failed_by_serial = False
         serial_patterns = []
@@ -104,6 +105,7 @@ class RuntimeManager:
         if not should_keep and self.plan.get("execution", {}).get("cleanup_between_cases", True):
             self.cleanup_case()
 
+        camera_artifacts = self.collect_camera_evidence(camera_evidence)
         record = {
             "nodeid": nodeid,
             "status": final_status,
@@ -113,9 +115,124 @@ class RuntimeManager:
             "started_at": case_state.get("started_at"),
             "ended_at": datetime.utcnow().isoformat(),
         }
+        if camera_artifacts is not None:
+            record["camera_evidence"] = camera_artifacts
         self.case_records.append(record)
         self._write_json(self.case_dir / "result.json", record)
         return record
+
+    def collect_camera_evidence(self, evidence_path):
+        """Copy camera evidence and referenced image outputs into the run package.
+
+        Camera cases write their detailed evidence under ``reports/camera`` and
+        expose that path as a JUnit user property.  The runtime ZIP is created
+        from ``reports/artifacts/<run>`` only, so the evidence must be copied
+        before the ZIP is assembled.
+        """
+        if not evidence_path:
+            return None
+        if not self.plan.get("artifacts", {}).get("include_camera_evidence", True):
+            return {"enabled": False, "source": str(evidence_path)}
+
+        source = Path(str(evidence_path)).expanduser()
+        result = {
+            "source": str(source.resolve()),
+            "evidence_file": None,
+            "files": [],
+            "missing": [],
+        }
+        if not source.is_file():
+            result["error"] = f"Evidence file does not exist: {source}"
+            return result
+        if self.case_dir is None:
+            result["error"] = "Runtime case directory is not initialized"
+            return result
+
+        camera_dir = self.case_dir / "camera"
+        image_dir = camera_dir / "images"
+        camera_dir.mkdir(parents=True, exist_ok=True)
+        image_dir.mkdir(parents=True, exist_ok=True)
+
+        evidence_target = camera_dir / source.name
+        try:
+            if source.resolve() != evidence_target.resolve():
+                shutil.copy2(source, evidence_target)
+            result["evidence_file"] = self._relative_artifact_path(evidence_target)
+            evidence = json.loads(source.read_text(encoding="utf-8"))
+        except (OSError, ValueError) as exc:
+            result["error"] = f"Evidence copy/read failed: {exc}"
+            return result
+
+        seen = {}
+        for metric_key, image_value in self._iter_image_paths(evidence.get("metrics", {}), ""):
+            image_source = Path(image_value).expanduser()
+            if not image_source.is_file():
+                result["missing"].append({"metric": metric_key, "source": str(image_source)})
+                continue
+
+            resolved_source = str(image_source.resolve())
+            if resolved_source in seen:
+                archive_path = seen[resolved_source]
+            else:
+                # The nodeid-based case directory can be long on Windows. Use
+                # the metric name plus the original suffix instead of the full
+                # timestamped source filename to stay below MAX_PATH.
+                short_name = safe_name(metric_key.rsplit(".", 1)[-1]) or "image"
+                destination = image_dir / f"{len(seen) + 1:02d}_{short_name}{image_source.suffix.lower()}"
+                try:
+                    shutil.copy2(image_source, destination)
+                except OSError as exc:
+                    result["missing"].append({
+                        "metric": metric_key,
+                        "source": resolved_source,
+                        "error": str(exc),
+                    })
+                    continue
+                archive_path = self._relative_artifact_path(destination)
+                seen[resolved_source] = archive_path
+
+            result["files"].append({
+                "metric": metric_key,
+                "source": resolved_source,
+                "archive_path": archive_path,
+                "size_bytes": image_source.stat().st_size,
+            })
+
+        manifest_path = camera_dir / "artifact_manifest.json"
+        try:
+            manifest_path.write_text(
+                json.dumps(result, ensure_ascii=False, indent=2),
+                encoding="utf-8",
+            )
+            result["manifest_file"] = self._relative_artifact_path(manifest_path)
+        except OSError as exc:
+            result["manifest_error"] = str(exc)
+        logger.info(
+            "Camera evidence collected: %s images, %s missing, source=%s",
+            len(result["files"]),
+            len(result["missing"]),
+            source,
+        )
+        return result
+
+    @staticmethod
+    def _iter_image_paths(value, key=""):
+        image_suffixes = {".bmp", ".jpeg", ".jpg", ".png", ".tif", ".tiff", ".webp"}
+        if isinstance(value, str):
+            if Path(value).suffix.lower() in image_suffixes:
+                yield key, value
+            return
+        if isinstance(value, dict):
+            for child_key, child_value in value.items():
+                child_path = f"{key}.{child_key}" if key else str(child_key)
+                yield from RuntimeManager._iter_image_paths(child_value, child_path)
+            return
+        if isinstance(value, list):
+            for index, child_value in enumerate(value):
+                yield from RuntimeManager._iter_image_paths(child_value, f"{key}[{index}]")
+
+    def _relative_artifact_path(self, path):
+        return str(Path(path).resolve().relative_to(self.artifacts_dir.resolve())).replace("\\", "/")
 
     def collect_failure_artifacts(self, nodeid):
         adb_config = self.plan.get("adb", {})

@@ -1,0 +1,29 @@
+name: 相机 P0 冒烟门禁
+description: 相机所有 P0 用例的基础质量门禁
+targets:
+  - testcases/camera/output/P0
+  - testcases/camera/ae/P0
+  - testcases/camera/sharpness/P0
+  - testcases/camera/awb/P0
+  - testcases/camera/shading/P0
+  - testcases/camera/defect/P0
+cases:
+  - CAM-IMG-001
+  - CAM-IMG-002
+  - CAM-IMG-003
+  - CAM-AE-001
+  - CAM-AE-002
+  - CAM-AE-003
+  - CAM-SHP-001
+  - CAM-SHP-002
+  - CAM-SHP-003
+  - CAM-SHP-004
+  - CAM-COLOR-001
+  - CAM-COLOR-002
+  - CAM-SHD-001
+  - CAM-SHD-002
+  - CAM-DEFECT-004
+execution:
+  continue_on_fail: true
+  cleanup_between_cases: true
+  stop_on_collection_error: true

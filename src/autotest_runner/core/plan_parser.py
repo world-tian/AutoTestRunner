@@ -39,6 +39,7 @@ DEFAULT_PLAN = {
     "artifacts": {
         "output_dir": "reports/artifacts",
         "zip_logs": True,
+        "include_camera_evidence": True,
     },
 }
 

@@ -1,0 +1,13 @@
+name: 相机几何专项
+description: 覆盖镜头畸变、横向色差、光轴偏移和透视误差
+targets:
+  - testcases/camera/geometry/P1
+cases:
+  - CAM-GEO-001
+  - CAM-GEO-002
+  - CAM-GEO-003
+  - CAM-GEO-004
+execution:
+  continue_on_fail: true
+  cleanup_between_cases: true
+  stop_on_collection_error: true

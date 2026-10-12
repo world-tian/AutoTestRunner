@@ -1,0 +1,5 @@
+来源：Imatest examples（GitHub）中的 ISO 12233 2023 E-SFR matte chart capture。
+下载地址：https://raw.githubusercontent.com/imatest/examples/main/ISO%2012233%202023%20E-SFR%20Resolution/eSFR-ISO-23_matte.JPG
+原始尺寸：7636×5259，未做插值放大。
+内容：ISO 12233:2023 Extended eSFR 靶图照片，含四周期斜星、灰阶/OECF 区域和颜色块；适合作为打印布局与拍摄构图参考。
+边界：这是 Imatest 示例照片，不是可直接打印的原始矢量靶卡，也不能替代有尺寸、反射率和印刷精度证书的正式 ISO 12233 实物靶卡。

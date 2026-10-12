@@ -1,0 +1,18 @@
+name: 厂商镜头标定 - AWB中性灰筛查
+description: 用设备实拍中性灰卡筛查RGB通道、R/G、B/G和中性误差；COLOR-006色差代理与色散LCA不在本计划内
+env:
+  # 默认仅用于流程验证；正式厂商验收请用 --picture 覆盖为实拍中性灰卡。
+  CAMERA_PICTURE: testcases/camera/images/reference/vendor_neutral_gray_reference.png
+targets:
+  - testcases/camera/awb/P0
+  - testcases/camera/awb/P1
+cases:
+  - CAM-COLOR-001
+  - CAM-COLOR-002
+  - CAM-COLOR-003
+  - CAM-COLOR-004
+  - CAM-COLOR-005
+execution:
+  continue_on_fail: true
+  cleanup_between_cases: true
+  stop_on_collection_error: true

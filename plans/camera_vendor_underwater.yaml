@@ -1,0 +1,18 @@
+name: 厂商镜头标定 - Underwater IQ
+description: 空气/水下配对验证清晰度、FOV/畸变、AWB、对比度和散射
+# 该专项不能用单张图片正式验收；需要同一测试卡的空气与水下配对图、连续帧和水下治具记录。
+env:
+  # 默认仅用于流程验证；正式验收必须用 --picture 指向空气/水下配对采集流程的实际输入。
+  CAMERA_PICTURE: testcases/camera/images/reference/vendor_air_water_pair_reference.png
+targets:
+  - testcases/camera/underwater/P1
+cases:
+  - CAM-UW-001
+  - CAM-UW-002
+  - CAM-UW-003
+  - CAM-UW-004
+  - CAM-UW-005
+execution:
+  continue_on_fail: true
+  cleanup_between_cases: true
+  stop_on_collection_error: true

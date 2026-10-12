@@ -1,0 +1,19 @@
+name: 相机清晰度专项
+description: P0基础清晰度与P1空间热力图
+targets:
+  - testcases/camera/sharpness/P0
+  - testcases/camera/sharpness/P1
+cases:
+  - CAM-SHP-001
+  - CAM-SHP-002
+  - CAM-SHP-003
+  - CAM-SHP-004
+  - CAM-SHP-005
+  - CAM-SHP-006
+  - CAM-SHP-007
+  - CAM-SHP-008
+  - CAM-SHP-009
+execution:
+  continue_on_fail: true
+  cleanup_between_cases: true
+  stop_on_collection_error: true

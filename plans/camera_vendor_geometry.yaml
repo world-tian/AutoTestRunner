@@ -1,0 +1,16 @@
+name: 厂商镜头标定 - Geometry
+description: 用设备实拍且尺寸已知的棋盘格/网格图筛查几何代理；当前算法未拟合相机内参和畸变系数，不能用于正式标定验收
+env:
+  # 默认仅用于流程验证；正式厂商验收请用 --picture 覆盖为尺寸已知的实拍网格/棋盘格。
+  CAMERA_PICTURE: testcases/camera/images/reference/vendor_geometry_grid_reference.png
+targets:
+  - testcases/camera/geometry/P1
+cases:
+  - CAM-GEO-001
+  - CAM-GEO-002
+  - CAM-GEO-003
+  - CAM-GEO-004
+execution:
+  continue_on_fail: true
+  cleanup_between_cases: true
+  stop_on_collection_error: true

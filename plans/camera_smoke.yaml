@@ -1,0 +1,18 @@
+name: 相机 Smoke 冒烟
+description: 选择输出、曝光、清晰度和颜色代表用例快速验证链路
+targets:
+  - testcases/camera/output/P0/test-output-image_parse
+  - testcases/camera/ae/P0/test-ae-average_brightness
+  - testcases/camera/sharpness/P0/test-sharpness-global_sharpness
+  - testcases/camera/awb/P0/test-awb-rgb_channel_statistics
+  - testcases/camera/defect/P0/test-defect-large_color_block
+cases:
+  - CAM-IMG-001
+  - CAM-AE-001
+  - CAM-SHP-001
+  - CAM-COLOR-001
+  - CAM-DEFECT-004
+execution:
+  continue_on_fail: true
+  cleanup_between_cases: true
+  stop_on_collection_error: true
